@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script th:inline="javascript">
+        window.onload = function () {
+            btn.onclick = function () {
+                if(window.confirm('确定要返回主页面吗')){
+                    window.location.href='/cz/login';
+                }else{
+                    return false;
+                }
+            }
+        }
+
+    </script>
+</head>
+<body>
+<button id="btn">返回主页面</button>
+<table border="1">
+    <thead>
+    <tr>
+        <th>员工姓名</th>
+        <th>菜名</th>
+        <th>总价</th>
+        <th>订餐时间</th>
+        <th>餐厅电话</th>
+        <th>餐厅名称</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item: ${userBookList}">
+        <td th:text="${userMap.get(item.userId)}">...</td>
+        <td th:text="${cookBookMap.get(item.bookId).cookname}">...</td>
+        <th th:text="${item.price}">...</th>
+        <th th:text="${#dates.format(item.foodDateFormat,'yyyy-MM-dd HH:mm:ss')}">...</th>
+        <th th:text="${restaurantMap.get(cookBookMap.get(item.bookId).restauranId).TelephoneNumber}">...</th>
+        <td th:text="${restaurantMap.get(cookBookMap.get(item.bookId).restauranId).Name}">...</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
