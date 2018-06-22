@@ -13,16 +13,21 @@ import java.util.List;
 
 @Service
 public class UserBookServiceImpl implements IUserBookService {
-	@Autowired
-    private UserBookRepository userBookRepository;
+	 @Autowired
+	    private UserBookRepository userBookRepository;
 
-    @Override
-    public UserBook save(UserBook userBook) {
-        return userBookRepository.save(userBook);
-    }
+	    @Override
+	    public UserBook save(UserBook userBook) {
+	        return userBookRepository.save(userBook);
+	    }
 
-    @Override
-    public List<UserBook> findByNowFoodDate() {
-        return userBookRepository.findByNowFoodDate();
-    }
+	    @Override
+	    public List<UserBook> findByNowFoodDate() {
+	        return userBookRepository.findByNowFoodDate();
+	    }
+
+	    @Override
+	    public List<UserBook> findByUserIdAndFoodDate(Integer userId) {
+	        return userBookRepository.findByUserIdAndFoodDate(userId);
+	    }
 }

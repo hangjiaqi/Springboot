@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 public interface IUserBookService {
-    UserBook save(UserBook userBook);
-    List<UserBook> findByNowFoodDate();
+	   UserBook save(UserBook userBook);
+	    List<UserBook> findByNowFoodDate();
+	    List<UserBook> findByUserIdAndFoodDate(Integer userId);
 }

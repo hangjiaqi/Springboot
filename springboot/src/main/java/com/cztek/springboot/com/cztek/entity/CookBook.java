@@ -8,6 +8,7 @@ import java.util.List;
 public class CookBook{
 
 
+
     private Integer id;//主键
     private String cookname;//菜名
     private List<User> userlist;
@@ -80,5 +81,6 @@ public class CookBook{
     public void setUserlist(List<User> userlist) {
         this.userlist = userlist;
     }
+
 
 }

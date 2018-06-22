@@ -13,24 +13,24 @@ import javax.annotation.Resource;
 
 @Service
 public class UserServiceImpl implements IUserService {
-	@Autowired
-    private UserRepository userRepository;
+	 @Autowired
+	    private UserRepository userRepository;
 
-    @Override
-    public User findByName(String name) {
-        User user = null;
-        if (name != null) {
-            user = userRepository.findByName(name);
-            if (user == null || !name.equals(user.getName())) {
-                user = null;
-            }
-        }
-        return user;
-    }
+	    @Override
+	    public User findByName(String name) {
+	        User user = null;
+	        if (name != null) {
+	            user = userRepository.findByName(name);
+	            if (user == null || !name.equals(user.getName())) {
+	                user = null;
+	            }
+	        }
+	        return user;
+	    }
 
-    @Override
-    public User findById(Integer Id) {
-        User user = userRepository.findById(Id).orElse(null);
-        return user;
-    }
+	    @Override
+	    public User findById(Integer Id) {
+	        User user = userRepository.findById(Id).orElse(null);
+	        return user;
+	    }
 }

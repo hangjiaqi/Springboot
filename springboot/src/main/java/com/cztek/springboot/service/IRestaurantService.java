@@ -6,7 +6,5 @@ import java.util.List;
 
 public interface IRestaurantService {
 
-   /*List<Restaurant> selectByName(Integer id);*/
-
-    Restaurant findOne(int id);
+	Restaurant findOne(int id);
 }

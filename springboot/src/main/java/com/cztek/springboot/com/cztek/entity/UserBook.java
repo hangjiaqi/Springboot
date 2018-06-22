@@ -17,7 +17,11 @@ import java.util.Date;
 public class UserBook implements Serializable {
 
 
-    private Integer userId;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Integer userId;
     private Integer bookId;
     private Integer price;
 
