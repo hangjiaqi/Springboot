@@ -1,41 +1,38 @@
-package com.cztek.springboot.com.cztek.com.cztek.controller;
+package com.cztek.springboot.controller;
 
 
-import com.cztek.springboot.com.cztek.Enum.DateEunm;
-import com.cztek.springboot.com.cztek.com.cztek.Util.DataUtils;
-import com.cztek.springboot.com.cztek.com.cztek.service.ICookBookService;
-import com.cztek.springboot.com.cztek.com.cztek.service.IRestaurantService;
-import com.cztek.springboot.com.cztek.com.cztek.service.IUserBookService;
-import com.cztek.springboot.com.cztek.com.cztek.service.IUserService;
 import com.cztek.springboot.com.cztek.entity.CookBook;
 import com.cztek.springboot.com.cztek.entity.Restaurant;
 import com.cztek.springboot.com.cztek.entity.User;
 import com.cztek.springboot.com.cztek.entity.UserBook;
+import com.cztek.springboot.service.ICookBookService;
+import com.cztek.springboot.service.IRestaurantService;
+import com.cztek.springboot.service.IUserBookService;
+import com.cztek.springboot.service.IUserService;
+
 import lombok.extern.slf4j.Slf4j;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
-import javax.annotation.Resource;
-import java.math.BigDecimal;
 import java.util.*;
 
 
 @Controller
 @RequestMapping("/cz")
-@Slf4j
 public class LoginController {
-    @Resource
-    private ICookBookService cookBookServiceImpl;
-    @Resource
-    private IRestaurantService restaurantServiceImpl;
-    @Resource
-    private IUserService userServceImpl;
-    @Resource
+	@Autowired
+    private ICookBookService cookBookService;
+    @Autowired
     private IUserBookService userBookService;
+    @Autowired
+    private IRestaurantService restaurantService;
+    @Autowired
+    private IUserService userServce;
 
     @RequestMapping("/login")
     public String login(Model model) {
@@ -44,9 +41,9 @@ public class LoginController {
         Map<Integer, String> userMap = new HashMap<>();
         Map<Integer, Restaurant> restaurantMap = new HashMap<>();
         for (UserBook userbook : userBookList) {
-            User user = userServceImpl.findById(userbook.getUserId());
-            CookBook cookBook = cookBookServiceImpl.findById(userbook.getBookId());
-            Restaurant restaurant = restaurantServiceImpl.findOne(cookBook.getRestauranId());
+            User user = userServce.findById(userbook.getUserId());
+            CookBook cookBook = cookBookService.findById(userbook.getBookId());
+            Restaurant restaurant = restaurantService.findOne(cookBook.getRestauranId());
             cookBookMap.put(cookBook.getId(), cookBook);
             restaurantMap.put(restaurant.getId(), restaurant);
             userMap.put(user.getUserId(), user.getName());
@@ -60,8 +57,8 @@ public class LoginController {
 
     @GetMapping(value = "/login/user/{username}")
     public String loginChek(@PathVariable(value = "username", required = true) String name, Model model) {
-        User user = userServceImpl.findByName(name);
-        List<CookBook> cookBooks = cookBookServiceImpl.finAll();
+        User user = userServce.findByName(name);
+        List<CookBook> cookBooks = cookBookService.finAll();
         model.addAttribute("cookBooks", cookBooks);
         if (user != null) {
             model.addAttribute("message", user.getUserId());

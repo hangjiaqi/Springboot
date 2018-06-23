@@ -1,4 +1,4 @@
-package com.cztek.springboot.com.cztek.Enum;
+package com.cztek.springboot.Enum;
 
 import lombok.Data;
 

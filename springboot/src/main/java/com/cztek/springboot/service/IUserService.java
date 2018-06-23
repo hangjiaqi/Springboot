@@ -1,4 +1,4 @@
-package com.cztek.springboot.com.cztek.com.cztek.service;
+package com.cztek.springboot.service;
 
 import com.cztek.springboot.com.cztek.entity.User;
 

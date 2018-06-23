@@ -1,6 +1,6 @@
 package com.cztek.springboot.com.cztek.entity;
 
-import com.cztek.springboot.com.cztek.com.cztek.Util.DataUtils;
+import com.cztek.springboot.Util.DataUtils;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;

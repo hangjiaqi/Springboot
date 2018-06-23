@@ -1,4 +1,4 @@
-package com.cztek.springboot.com.cztek.repository;
+package com.cztek.springboot.repository;
 
 import com.cztek.springboot.com.cztek.entity.CookBook;
 import org.springframework.data.jpa.repository.JpaRepository;

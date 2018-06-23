@@ -1,8 +1,10 @@
-package com.cztek.springboot.com.cztek.com.cztek.service.com.cztek.service.impl;
+package com.cztek.springboot.service.impl;
 
-import com.cztek.springboot.com.cztek.com.cztek.service.IUserBookService;
 import com.cztek.springboot.com.cztek.entity.UserBook;
-import com.cztek.springboot.com.cztek.repository.UserBookRepository;
+import com.cztek.springboot.repository.UserBookRepository;
+import com.cztek.springboot.service.IUserBookService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -11,7 +13,7 @@ import java.util.List;
 
 @Service
 public class UserBookServiceImpl implements IUserBookService {
-    @Resource
+	@Autowired
     private UserBookRepository userBookRepository;
 
     @Override

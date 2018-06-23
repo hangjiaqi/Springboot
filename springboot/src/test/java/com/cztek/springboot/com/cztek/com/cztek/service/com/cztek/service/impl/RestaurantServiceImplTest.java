@@ -2,7 +2,8 @@ package com.cztek.springboot.com.cztek.com.cztek.service.com.cztek.service.impl;
 
 import com.cztek.springboot.com.cztek.entity.CookBook;
 import com.cztek.springboot.com.cztek.entity.Restaurant;
-import com.cztek.springboot.com.cztek.repository.RestaurantRepository;
+import com.cztek.springboot.repository.RestaurantRepository;
+
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;

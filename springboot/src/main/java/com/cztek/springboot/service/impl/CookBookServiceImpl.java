@@ -1,8 +1,9 @@
-package com.cztek.springboot.com.cztek.com.cztek.service.com.cztek.service.impl;
+package com.cztek.springboot.service.impl;
 
-import com.cztek.springboot.com.cztek.com.cztek.service.ICookBookService;
 import com.cztek.springboot.com.cztek.entity.CookBook;
-import com.cztek.springboot.com.cztek.repository.CookBootRepository;
+import com.cztek.springboot.repository.CookBootRepository;
+import com.cztek.springboot.service.ICookBookService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

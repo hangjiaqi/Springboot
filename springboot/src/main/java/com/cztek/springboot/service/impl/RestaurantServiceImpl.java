@@ -1,8 +1,10 @@
-package com.cztek.springboot.com.cztek.com.cztek.service.com.cztek.service.impl;
+package com.cztek.springboot.service.impl;
 
-import com.cztek.springboot.com.cztek.com.cztek.service.IRestaurantService;
 import com.cztek.springboot.com.cztek.entity.Restaurant;
-import com.cztek.springboot.com.cztek.repository.RestaurantRepository;
+import com.cztek.springboot.repository.RestaurantRepository;
+import com.cztek.springboot.service.IRestaurantService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -11,7 +13,7 @@ import java.util.List;
 @Service
 public class RestaurantServiceImpl implements IRestaurantService {
 
-    @Resource
+	@Autowired
     private RestaurantRepository restaurantRepository;
 
     @Override

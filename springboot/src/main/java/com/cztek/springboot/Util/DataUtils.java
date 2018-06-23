@@ -1,4 +1,4 @@
-package com.cztek.springboot.com.cztek.com.cztek.Util;
+package com.cztek.springboot.Util;
 
 
 import java.text.ParseException;

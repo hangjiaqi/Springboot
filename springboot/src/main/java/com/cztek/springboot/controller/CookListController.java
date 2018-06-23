@@ -1,14 +1,17 @@
-package com.cztek.springboot.com.cztek.com.cztek.controller;
+package com.cztek.springboot.controller;
 
-import com.cztek.springboot.com.cztek.com.cztek.service.ICookBookService;
-import com.cztek.springboot.com.cztek.com.cztek.service.IRestaurantService;
-import com.cztek.springboot.com.cztek.com.cztek.service.IUserBookService;
-import com.cztek.springboot.com.cztek.com.cztek.service.IUserService;
 import com.cztek.springboot.com.cztek.entity.CookBook;
 import com.cztek.springboot.com.cztek.entity.Restaurant;
 import com.cztek.springboot.com.cztek.entity.User;
 import com.cztek.springboot.com.cztek.entity.UserBook;
+import com.cztek.springboot.service.ICookBookService;
+import com.cztek.springboot.service.IRestaurantService;
+import com.cztek.springboot.service.IUserBookService;
+import com.cztek.springboot.service.IUserService;
+
 import lombok.extern.slf4j.Slf4j;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +19,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,14 +27,14 @@ import java.util.Map;
 @RequestMapping("/czbook")
 @Slf4j
 public class CookListController {
-    @Resource
-    private ICookBookService cookBookServiceImpl;
-    @Resource
+    @Autowired
+    private ICookBookService cookBookService;
+    @Autowired
     private IUserBookService userBookService;
-    @Resource
-    private IRestaurantService restaurantServiceImpl;
-    @Resource
-    private IUserService userServceImpl;
+    @Autowired
+    private IRestaurantService restaurantService;
+    @Autowired
+    private IUserService userServce;
 
     @GetMapping("/user/cook/{username}/{check_val}")
     public ModelAndView userCheck(@PathVariable(value = "username", required = true) Integer name,
@@ -42,12 +44,12 @@ public class CookListController {
             UserBook userBook = new UserBook();
             userBook.setUserId(name);
             userBook.setBookId(num[i]);
-            CookBook cookBook = cookBookServiceImpl.findById(num[i]);
+            CookBook cookBook = cookBookService.findById(num[i]);
             userBook.setPrice(cookBook.getPrice());
             userBook.setFoodDate(String.valueOf(System.currentTimeMillis() + "" + userBook.getUserId() + "" + userBook.getBookId()));
             userBookService.save(userBook);
         }
-        return new ModelAndView("redirect:/cz/user/cookbook/list");
+        return new ModelAndView("redirect:/czbook/user/cookbook/list");
     }
     @RequestMapping("/user/cookbook/list")
     public String userList(Model model) {
@@ -56,9 +58,9 @@ public class CookListController {
         Map<Integer, String> userMap = new HashMap<>();
         Map<Integer, Restaurant> restaurantMap = new HashMap<>();
         for (UserBook userbook : userBookList) {
-            User user = userServceImpl.findById(userbook.getUserId());
-            CookBook cookBook = cookBookServiceImpl.findById(userbook.getBookId());
-            Restaurant restaurant = restaurantServiceImpl.findOne(cookBook.getRestauranId());
+            User user = userServce.findById(userbook.getUserId());
+            CookBook cookBook = cookBookService.findById(userbook.getBookId());
+            Restaurant restaurant = restaurantService.findOne(cookBook.getRestauranId());
             cookBookMap.put(cookBook.getId(), cookBook);
             restaurantMap.put(restaurant.getId(), restaurant);
             userMap.put(user.getUserId(), user.getName());
