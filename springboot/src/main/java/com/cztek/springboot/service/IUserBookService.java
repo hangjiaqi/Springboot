@@ -1,12 +1,22 @@
 package com.cztek.springboot.service;
 
-import com.cztek.springboot.com.cztek.entity.UserBook;
 
-import java.util.Date;
 import java.util.List;
 
+import com.cztek.springboot.entity.ModelVo;
+import com.cztek.springboot.entity.UserBook;
+
+
+
 public interface IUserBookService {
-	   UserBook save(UserBook userBook);
-	    List<UserBook> findByNowFoodDate();
-	    List<UserBook> findByUserIdAndFoodDate(Integer userId);
+	UserBook save(UserBook userBook);
+
+	List<UserBook> findByNowFoodDate();
+
+	List<UserBook> findByUserIdAndFoodDate(Integer userId);
+	
+	int deleteUserBook(Integer userBookId);
+	
+	List<ModelVo> findCookBookDayAll();
+
 }

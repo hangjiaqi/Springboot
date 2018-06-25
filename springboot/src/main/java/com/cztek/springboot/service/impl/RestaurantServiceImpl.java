@@ -1,6 +1,6 @@
 package com.cztek.springboot.service.impl;
 
-import com.cztek.springboot.com.cztek.entity.Restaurant;
+import com.cztek.springboot.entity.Restaurant;
 import com.cztek.springboot.repository.RestaurantRepository;
 import com.cztek.springboot.service.IRestaurantService;
 

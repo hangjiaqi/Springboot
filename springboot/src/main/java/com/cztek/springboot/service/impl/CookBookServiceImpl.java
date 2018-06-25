@@ -1,6 +1,6 @@
 package com.cztek.springboot.service.impl;
 
-import com.cztek.springboot.com.cztek.entity.CookBook;
+import com.cztek.springboot.entity.CookBook;
 import com.cztek.springboot.repository.CookBootRepository;
 import com.cztek.springboot.service.ICookBookService;
 

@@ -1,6 +1,6 @@
 package com.cztek.springboot.service.impl;
 
-import com.cztek.springboot.com.cztek.entity.User;
+import com.cztek.springboot.entity.User;
 import com.cztek.springboot.repository.UserRepository;
 import com.cztek.springboot.service.IUserService;
 

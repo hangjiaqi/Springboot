@@ -3,6 +3,14 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Title</title>
+    <style type="text/css">
+    
+    .div_1{
+          float: right;
+          color:red;
+    }
+    
+    </style>
     <script th:inline="javascript">
         window.onload=function(){
         var sub= document.getElementById("uname");
@@ -48,5 +56,29 @@
     </tr>
     </tbody>
 </table>
+<div class="div_1">
+<table border="1">
+    <thead>
+    <tr>
+        <th>菜名</th>
+        <th>餐厅名称</th>
+        <th>餐厅电话</th>
+        <th>单价</th>
+        <th>订餐时间</th>
+        <th>数量</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="items: ${CookBookDayAll}">
+        <td th:text="${items.cookname}">...</td>
+        <td th:text="${items.name}">...</td>
+        <th th:text="${items.telephoneNumber}">...</th>
+        <th th:text="${items.price}">...</th>
+        <th th:text="${#dates.format(items.updateTime,'yyyy-MM-dd HH:mm:ss')}">...</th>
+        <th th:text="${items.count}">...</th>
+    </tr>
+    </tbody>
+</table>
+</div>
 </body>
 </html>

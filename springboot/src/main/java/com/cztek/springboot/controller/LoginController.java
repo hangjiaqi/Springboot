@@ -1,16 +1,16 @@
 package com.cztek.springboot.controller;
 
 
-import com.cztek.springboot.com.cztek.entity.CookBook;
-import com.cztek.springboot.com.cztek.entity.Restaurant;
-import com.cztek.springboot.com.cztek.entity.User;
-import com.cztek.springboot.com.cztek.entity.UserBook;
+import com.cztek.springboot.entity.CookBook;
+import com.cztek.springboot.entity.ModelVo;
+import com.cztek.springboot.entity.Restaurant;
+import com.cztek.springboot.entity.User;
+import com.cztek.springboot.entity.UserBook;
 import com.cztek.springboot.service.ICookBookService;
 import com.cztek.springboot.service.IRestaurantService;
 import com.cztek.springboot.service.IUserBookService;
 import com.cztek.springboot.service.IUserService;
 
-import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,6 +37,7 @@ public class LoginController {
 	    @RequestMapping("/login")
 	    public String login(Model model) {
 	        List<UserBook> userBookList = userBookService.findByNowFoodDate();
+	        List<ModelVo> CookBookDayAll = userBookService.findCookBookDayAll();
 	        Map<Integer, CookBook> cookBookMap = new HashMap<>();
 	        Map<Integer, String> userMap = new HashMap<>();
 	        Map<Integer, Restaurant> restaurantMap = new HashMap<>();
@@ -48,6 +49,7 @@ public class LoginController {
 	            restaurantMap.put(restaurant.getId(), restaurant);
 	            userMap.put(user.getUserId(), user.getName());
 	        }
+	        model.addAttribute("CookBookDayAll",CookBookDayAll);
 	        model.addAttribute("userBookList", userBookList);
 	        model.addAttribute("restaurantMap", restaurantMap);
 	        model.addAttribute("cookBookMap", cookBookMap);

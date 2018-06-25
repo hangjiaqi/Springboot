@@ -1,8 +1,9 @@
 package com.cztek.springboot.repository;
 
-import com.cztek.springboot.com.cztek.entity.Restaurant;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+
+import com.cztek.springboot.entity.Restaurant;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.cztek.springboot.com.cztek.entity;
+package com.cztek.springboot.entity;
 
 import com.cztek.springboot.Util.DataUtils;
 import com.fasterxml.jackson.annotation.JsonFormat;
