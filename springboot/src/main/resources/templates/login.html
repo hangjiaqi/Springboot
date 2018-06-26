@@ -24,12 +24,20 @@
                 window.location.href="/cz/login/user/"+sub.value;
             }
         }
+        btn1.onclick=function(){
+        if(sub.value==""|sub.value==undefined){
+                check.style.color="red";
+                check.innerText="名字不能为空";
+            }else{
+                window.location.href="/update/login/user/"+sub.value;
+            }
+        }
         }
     </script>
 </head>
 <body>
 员工名字:<input id="uname" type="text" name="username"/>
-<button id="btn">确定</button><span id="check"></span><br/>
+<button id="btn">确定</button><button id="btn1">更换当日点餐</button><span id="check"></span><br/>
 <span style="color: red" th:text="${message}"></span>
 <br/>
 <br/>

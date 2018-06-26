@@ -58,7 +58,7 @@ public class CookListController {
 			resultPrice += price;
 		}
 		Integer sub = sugPrice + resultPrice;
-		if (sugPrice < 30 && resultPrice < 30 && sub < 30) {
+		if (sugPrice <= 30 && resultPrice <= 30 && sub <= 30) {
 			if (resultInt == true) {
 				for (int i = 0; i < num.length; i++) {
 					UserBook userBook = new UserBook();

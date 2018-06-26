@@ -18,5 +18,7 @@ public interface IUserBookService {
 	int deleteUserBook(Integer userBookId);
 	
 	List<ModelVo> findCookBookDayAll();
+	
+	List<UserBook> findByUserId(Integer id);
 
 }

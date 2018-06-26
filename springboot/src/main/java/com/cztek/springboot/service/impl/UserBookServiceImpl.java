@@ -50,4 +50,9 @@ public class UserBookServiceImpl implements IUserBookService {
 		return null;
 	}
 
+	@Override
+	public List<UserBook> findByUserId(Integer id) {
+		return userBookRepository.findByUserId(id);
+	}
+
 }
