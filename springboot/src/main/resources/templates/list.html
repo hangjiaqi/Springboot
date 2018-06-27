@@ -1,68 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"/>
-    <title>Title</title>
-    <style>
-        * {
-            padding: 0;
-            margin: 0;
-        }
-    </style>
-    <script th:inline="javascript">
-
-        window.onload = function () {
-            var username = document.getElementById('username').value;
-            btn.onclick = function () {
-                var obj = document.getElementsByName("check");
-                var check_val = new Array();
-                for (k in obj) {
-                    if (obj[k].checked)
-                        check_val.push(obj[k].value);
-                }
-                if (check_val.length <= 0) {
-                    alert("请选择您要吃的菜");
-                }else{
-                    window.location.href = '/czbook/user/cook/' + username + "/" + check_val;
-                }
-            }
-            btn1.onclick = function(){
-                if(window.confirm('确定要返回主页面吗')){
-                    window.location.href='/cz/login';
-                }else{
-                    return false;
-                }
-            }
-        }
-    </script>
+<meta charset="UTF-8" />
+<title>Title</title>
+<style>
+* {
+	padding: 0;
+	margin: 0;
+}
+p{
+   color: red;
+}
+</style>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script th:inline="javascript">
+	window.onload = function() {
+		btn.onclick = function() {
+			var obj = document.getElementsByClassName("check");
+			var check_val = new Array();
+			for (k in obj) {
+				if (obj[k].checked)
+					check_val.push(obj[k].value);
+			}
+			if (check_val.length <= 0) {
+				alert("请选择您要吃的菜");
+			} else {
+				document.getElementById("checkValues").value = check_val;
+				document.sub.submit();
+			}
+		}
+		btn1.onclick = function() {
+			if (window.confirm('确定要返回主页面吗')) {
+				window.location.href = '/cz/login';
+			} else {
+				return false;
+			}
+		}
+	}
+</script>
 </head>
-<input type="hidden" th:value="${message}" id="username"/>
-<button id="btn">提交</button><button id="btn1">返回上一层</button>
-<table border="1">
-    <thead>
-    <tr>
-        <th>餐厅编号</th>
-        <th>餐厅名称</th>
-        <th>菜编号</th>
-        <th>菜</th>
-        <th>价格</th>
-        <th>单拼价格</th>
-        <th>订餐电话</th>
-        <th>请选择</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="cookBook: ${cookBooks}">
-        <td th:text="${cookBook.restauranId}">...</td>
-        <td th:text="${cookBook.restaurant.name}">...</td>
-        <td th:text="${cookBook.id}">...</td>
-        <th th:text="${cookBook.cookname}">...</th>
-        <th th:text="${cookBook.price}" name="price_name">...</th>
-        <th th:text="${cookBook.salePrice}">此商品没有单拼价格</th>
-        <th th:text="${cookBook.restaurant.telephoneNumber}">...</th>
-        <th><input type="checkbox" th:value="${cookBook.id}" name="check"/></th>
-    </tr>
-    </tbody>
-</table>
+<p th:text="${msg}">...</p>
+<button id="btn">确认点餐</button>
+<button id="btn1">返回上一层</button>
+<form action="/czbook/user/cook" method="post" name="sub">
+	<input type="hidden" th:value="${userId}" id="userId" name="userId" />
+	<input type="hidden" id="checkValues" name="check_val" />
+	<table border="1">
+		<thead>
+			<tr>
+				<th>餐厅编号</th>
+				<th>餐厅名称</th>
+				<th>菜编号</th>
+				<th>菜</th>
+				<th>价格</th>
+				<th>单拼价格</th>
+				<th>订餐电话</th>
+				<th>请选择</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="cookBook: ${cookBooks}">
+				<td th:text="${cookBook.restauranId}">...</td>
+				<td th:text="${cookBook.restaurant.name}">...</td>
+				<td th:text="${cookBook.id}">...</td>
+				<th th:text="${cookBook.cookname}">...</th>
+				<th th:text="${cookBook.price}" name="price_name">...</th>
+				<th th:text="${cookBook.salePrice}">此商品没有单拼价格</th>
+				<th th:text="${cookBook.restaurant.telephoneNumber}">...</th>
+				<th><input type="checkbox" th:value="${cookBook.id}"
+					class="check" /></th>
+			</tr>
+		</tbody>
+	</table>
+</form>
 </body>
 </html>

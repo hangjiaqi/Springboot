@@ -3,6 +3,14 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Title</title>
+    <style type="text/css">
+    
+    .div_1{
+          float: right;
+          color:red;
+    }
+    
+    </style>
     <script th:inline="javascript">
         window.onload=function(){
         var sub= document.getElementById("uname");
@@ -16,12 +24,20 @@
                 window.location.href="/cz/login/user/"+sub.value;
             }
         }
+        btn1.onclick=function(){
+        if(sub.value==""|sub.value==undefined){
+                check.style.color="red";
+                check.innerText="名字不能为空";
+            }else{
+                window.location.href="/update/login/user/"+sub.value;
+            }
+        }
         }
     </script>
 </head>
 <body>
 员工名字:<input id="uname" type="text" name="username"/>
-<button id="btn">确定</button><span id="check"></span><br/>
+<button id="btn">确定</button><button id="btn1">更换当日点餐</button><span id="check"></span><br/>
 <span style="color: red" th:text="${message}"></span>
 <br/>
 <br/>
@@ -48,5 +64,29 @@
     </tr>
     </tbody>
 </table>
+<div class="div_1">
+<table border="1">
+    <thead>
+    <tr>
+        <th>菜名</th>
+        <th>餐厅名称</th>
+        <th>餐厅电话</th>
+        <th>单价</th>
+        <th>订餐时间</th>
+        <th>数量</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="items: ${CookBookDayAll}">
+        <td th:text="${items.cookname}">...</td>
+        <td th:text="${items.name}">...</td>
+        <th th:text="${items.telephoneNumber}">...</th>
+        <th th:text="${items.price}">...</th>
+        <th th:text="${#dates.format(items.updateTime,'yyyy-MM-dd HH:mm:ss')}">...</th>
+        <th th:text="${items.count}">...</th>
+    </tr>
+    </tbody>
+</table>
+</div>
 </body>
 </html>
