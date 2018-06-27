@@ -27,50 +27,51 @@ import com.cztek.springboot.service.IUserService;
 @RequestMapping("/update")
 public class UpdateCookListController {
 
-	 @Autowired
-	    private ICookBookService cookBookService;
-	    @Autowired
-	    private IRestaurantService restaurantService;
-	    @Autowired
-	    private IUserService userServce;
-	    @Autowired
-	    private IUserBookService userBookService;
+	@Autowired
+	private ICookBookService cookBookService;
+	@Autowired
+	private IRestaurantService restaurantService;
+	@Autowired
+	private IUserService userServce;
+	@Autowired
+	private IUserBookService userBookService;
 
-	
-    @GetMapping(value = "/login/user/{username}")
-    public String loginChek(@PathVariable(value = "username", required = true) String name, Model model) {
-        User user = userServce.findByName(name);
-        List<UserBook> findByUserId = userBookService.findByUserId(user.getUserId());
-        List<UserBook> userBookList = userBookService.findByUserIdAndFoodDate(user.getUserId());
-		Map<Integer, CookBook> cookBookMap = new HashMap<>();
-		Map<Integer, String> userMap = new HashMap<>();
-		Map<Integer, Restaurant> restaurantMap = new HashMap<>();
-		for (UserBook userbook : userBookList) {
-			CookBook cookBook = cookBookService.findById(userbook.getBookId());
-			Restaurant restaurant = restaurantService.findOne(cookBook.getRestauranId());
-			cookBookMap.put(cookBook.getId(), cookBook);
-			restaurantMap.put(restaurant.getId(), restaurant);
-			userMap.put(user.getUserId(), user.getName());
+	@GetMapping(value = "/login/user/{username}")
+	public String loginChek(@PathVariable(value = "username", required = true) String name, Model model) {
+		User user = userServce.findByName(name);
+		if (user == null) {
+			System.out.println("对不起您输入的名字有误");
+			model.addAttribute("message", "对不起您输入的名字有误");
+			model.addAttribute("username", name);
+			return "redirect:/cz/login/user/{username}";
+		} else {
+			List<UserBook> findByUserId = userBookService.findByUserId(user.getUserId());
+			List<UserBook> userBookList = userBookService.findByUserIdAndFoodDate(user.getUserId());
+			Map<Integer, CookBook> cookBookMap = new HashMap<>();
+			Map<Integer, String> userMap = new HashMap<>();
+			Map<Integer, Restaurant> restaurantMap = new HashMap<>();
+			for (UserBook userbook : userBookList) {
+				CookBook cookBook = cookBookService.findById(userbook.getBookId());
+				Restaurant restaurant = restaurantService.findOne(cookBook.getRestauranId());
+				cookBookMap.put(cookBook.getId(), cookBook);
+				restaurantMap.put(restaurant.getId(), restaurant);
+				userMap.put(user.getUserId(), user.getName());
+			}
+			model.addAttribute("userBookList", userBookList);
+			model.addAttribute("restaurantMap", restaurantMap);
+			model.addAttribute("cookBookMap", cookBookMap);
+			model.addAttribute("userMap", userMap);
+			model.addAttribute("findByUserId", findByUserId);
+			return "updatecook";
 		}
-		model.addAttribute("userBookList", userBookList);
-		model.addAttribute("restaurantMap", restaurantMap);
-		model.addAttribute("cookBookMap", cookBookMap);
-		model.addAttribute("userMap", userMap);
-        if (user != null) {
-        	model.addAttribute("findByUserId",findByUserId);
-            return "updatecook";
-        }
-        else {
-            model.addAttribute("message", "对不起您输入的名字有误");
-            return "login";
-        }
-    }
-    @PostMapping("/user/book")
+	}
+
+	@PostMapping("/user/book")
 	@ResponseBody
-	public Map<String,Integer> deleteUserBookId(@RequestParam(value="data") Integer userBookId) {
+	public Map<String, Integer> deleteUserBookId(@RequestParam(value = "data") Integer userBookId) {
 		Map<String, Integer> map = new HashMap<>();
-	    int deleteUserBook = userBookService.deleteUserBook(userBookId);
-		map.put("message",deleteUserBook);
+		int deleteUserBook = userBookService.deleteUserBook(userBookId);
+		map.put("message", deleteUserBook);
 		return map;
 	}
 }

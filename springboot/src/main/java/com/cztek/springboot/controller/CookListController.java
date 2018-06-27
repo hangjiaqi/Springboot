@@ -43,6 +43,8 @@ public class CookListController {
 	@RequestMapping("/user/cook")
 	public String userCheck(@RequestParam(value = "userId") Integer userId,
 			@RequestParam(value = "check_val") Integer num[], Model model) {
+		model.addAttribute("userId", userId);
+		
 		int sugPrice = 0;
 		String time = DateFormat.currentTime("17:00:00");
 		boolean resultInt = DateFormat.resultInt(time);
@@ -70,8 +72,7 @@ public class CookListController {
 							System.currentTimeMillis() + "" + userBook.getUserId() + "" + userBook.getBookId()));
 					userBookService.save(userBook);
 				}
-				model.addAttribute("uId", userId);
-				return "redirect:/czbook/user/cook/restaurant/list?uId=" + userId;
+				return "redirect:/czbook/user/cook/restaurant/list?userId=" + userId;
 			} else {
 				model.addAttribute("msg", "已超过5点不能点餐");
 			}
@@ -84,8 +85,8 @@ public class CookListController {
 	}
 
 	@RequestMapping("/user/cook/restaurant/list")
-	public String cookList(@RequestParam("uId") Integer uId, Model model) {
-		List<UserBook> userBookList = userBookService.findByUserIdAndFoodDate(uId);
+	public String cookList(@RequestParam("userId") Integer userId, Model model) {
+		List<UserBook> userBookList = userBookService.findByUserIdAndFoodDate(userId);
 		Map<Integer, CookBook> cookBookMap = new HashMap<>();
 		Map<Integer, String> userMap = new HashMap<>();
 		Map<Integer, Restaurant> restaurantMap = new HashMap<>();

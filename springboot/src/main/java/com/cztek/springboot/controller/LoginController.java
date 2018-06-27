@@ -57,13 +57,13 @@ public class LoginController {
 	        return "login";
 	    }
 
-	    @GetMapping(value = "/login/user/{username}")
+	@GetMapping(value = "/login/user/{username}")
 	    public String loginChek(@PathVariable(value = "username", required = true) String name, Model model) {
 	        User user = userServce.findByName(name);
 	        List<CookBook> cookBooks = cookBookService.finAll();
 	        model.addAttribute("cookBooks", cookBooks);
 	        if (user != null) {
-	            model.addAttribute("message", user.getUserId());
+	            model.addAttribute("userId", user.getUserId());
 	            return "list";
 	        } else {
 	            model.addAttribute("message", "对不起您输入的名字有误");
