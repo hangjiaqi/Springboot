@@ -1,11 +1,8 @@
 package com.cztek.springboot.entity;
 
-import com.cztek.springboot.Util.DataUtils;
+import com.cztek.springboot.utils.DataUtils;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.persistence.*;
 import java.io.Serializable;

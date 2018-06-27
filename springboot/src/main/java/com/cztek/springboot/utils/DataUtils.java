@@ -1,12 +1,9 @@
-package com.cztek.springboot.Util;
+package com.cztek.springboot.utils;
 
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import org.jboss.jandex.Main;
-import org.thymeleaf.util.DateUtils;
 
 public class DataUtils {
 

@@ -1,4 +1,4 @@
-package com.cztek.springboot.Util;
+package com.cztek.springboot.utils;
 
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;

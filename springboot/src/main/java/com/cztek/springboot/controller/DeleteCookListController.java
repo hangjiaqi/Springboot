@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.cztek.springboot.service.IUserBookService;
 
 @Controller
-@RequestMapping("/delete")
+@RequestMapping("/cz/delete")
 public class DeleteCookListController {
 
 	@Autowired
