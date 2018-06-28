@@ -23,7 +23,7 @@ import java.util.*;
 
 
 @Controller
-@RequestMapping("/cz")
+@RequestMapping("/login")
 public class LoginController {
 	  @Autowired
 	    private ICookBookService cookBookService;
@@ -34,7 +34,7 @@ public class LoginController {
 	    @Autowired
 	    private IUserBookService userBookService;
 
-	    @RequestMapping("/login")
+	    @RequestMapping("")
 	    public String login(Model model) {
 	        List<UserBook> userBookList = userBookService.findByNowFoodDate();
 	        List<ModelVo> CookBookDayAll = userBookService.findCookBookDayAll();
@@ -57,7 +57,7 @@ public class LoginController {
 	        return "login";
 	    }
 
-	@GetMapping(value = "/login/user/{username}")
+	@GetMapping(value = "/user/{username}")
 	    public String loginChek(@PathVariable(value = "username", required = true) String name, Model model) {
 	        User user = userServce.findByName(name);
 	        List<CookBook> cookBooks = cookBookService.finAll();
@@ -67,7 +67,7 @@ public class LoginController {
 	            return "list";
 	        } else {
 	            model.addAttribute("message", "对不起您输入的名字有误");
-	            return "login";
+	            return login(model);
 	        }
 	    }
 

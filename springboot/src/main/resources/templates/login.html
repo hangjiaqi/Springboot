@@ -11,6 +11,7 @@
     }
     
     </style>
+    
     <script th:inline="javascript">
         window.onload=function(){
         var sub= document.getElementById("uname");
@@ -29,7 +30,7 @@
                 check.style.color="red";
                 check.innerText="名字不能为空";
             }else{
-                window.location.href="/update/login/user/"+sub.value;
+                window.location.href="/cz/update/login/user/"+sub.value;
             }
         }
         }

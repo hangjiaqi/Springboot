@@ -16,7 +16,7 @@
             $(".delete").on("click", function() {
             	 var data = this.attributes["data"].value;  
             	 $.ajax({
-                  url:"/delete/user/book",
+                  url:"/cz/delete/user/book",
                   data:{"data":data},
                   dataType:"json",
                   type:"POST",

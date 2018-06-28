@@ -29,7 +29,6 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/czbook")
-@Slf4j
 public class CookListController {
 	@Autowired
 	private ICookBookService cookBookService;

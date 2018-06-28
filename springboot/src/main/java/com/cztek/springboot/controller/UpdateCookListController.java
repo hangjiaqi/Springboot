@@ -40,10 +40,8 @@ public class UpdateCookListController {
 	public String loginChek(@PathVariable(value = "username", required = true) String name, Model model) {
 		User user = userServce.findByName(name);
 		if (user == null) {
-			System.out.println("对不起您输入的名字有误");
-			model.addAttribute("message", "对不起您输入的名字有误");
 			model.addAttribute("username", name);
-			return "redirect:/cz/login/user/{username}";
+			return "redirect:/login/user/{username}";
 		} else {
 			List<UserBook> findByUserId = userBookService.findByUserId(user.getUserId());
 			List<UserBook> userBookList = userBookService.findByUserIdAndFoodDate(user.getUserId());
