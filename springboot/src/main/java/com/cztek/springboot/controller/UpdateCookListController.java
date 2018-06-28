@@ -24,7 +24,7 @@ import com.cztek.springboot.service.IUserBookService;
 import com.cztek.springboot.service.IUserService;
 
 @Controller
-@RequestMapping("/cz/update")
+@RequestMapping("/update")
 public class UpdateCookListController {
 
     @Autowired
@@ -45,17 +45,17 @@ public class UpdateCookListController {
             model.addAttribute("username", name);
             return "redirect:/cz/login";
         } else {
-            List<UserBook> findByUserId = userBookService.findByUserId(user.getUserId());
-            List<UserBook> userBookList = userBookService.findByUserIdAndFoodDate(user.getUserId());
+            List<UserBook> findByUserId = userBookService.findByUserId(user.getId());
+            List<UserBook> userBookList = userBookService.findByUserIdAndFoodDate(user.getId());
             Map<Integer, CookBook> cookBookMap = new HashMap<>();
             Map<Integer, String> userMap = new HashMap<>();
             Map<Integer, Restaurant> restaurantMap = new HashMap<>();
             for (UserBook userbook : userBookList) {
-                CookBook cookBook = cookBookService.findById(userbook.getBookId());
-                Restaurant restaurant = restaurantService.findOne(cookBook.getRestauranId());
+                CookBook cookBook = cookBookService.findById(userbook.getCookBookId());
+                Restaurant restaurant = restaurantService.findOne(cookBook.getRestaurantId());
                 cookBookMap.put(cookBook.getId(), cookBook);
                 restaurantMap.put(restaurant.getId(), restaurant);
-                userMap.put(user.getUserId(), user.getName());
+                userMap.put(user.getId(), user.getName());
             }
             model.addAttribute("userBookList", userBookList);
             model.addAttribute("restaurantMap", restaurantMap);

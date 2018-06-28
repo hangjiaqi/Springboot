@@ -1,94 +1,84 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" class="fullscreen-bg" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8"/>
-    <title>Title</title>
-    <style type="text/css">
-
-        .div_1 {
-            float: right;
-            color: red;
-        }
-
-    </style>
-    <script th:inline="javascript">
-        window.onload = function () {
-            var sub = document.getElementById("uname");
-            var check = document.getElementById("check");
-            var btn = document.getElementById("btn");
-            btn.onclick = function () {
-                if (sub.value == "" | sub.value == undefined) {
-                    check.style.color = "red";
-                    check.innerText = "名字不能为空";
-                } else {
-                    window.location.href = "/cz/login/user/" + sub.value;
-                }
-            }
-            btn1.onclick = function () {
-                if (sub.value == "" | sub.value == undefined) {
-                    check.style.color = "red";
-                    check.innerText = "名字不能为空";
-                } else {
-                    window.location.href = "/cz/update/login/user/" + sub.value;
-                }
-            }
-        }
-    </script>
+    <title>Login</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <!-- VENDOR CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/vendor/linearicons/style.css">
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
+    <link rel="stylesheet" href="assets/css/demo.css">
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
+    <!-- ICONS -->
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
 </head>
+
 <body>
-员工名字:<input id="uname" type="text" name="username"/>
-<button id="btn">确定</button>
-<button id="btn1">更换当日点餐</button>
-<span id="check"></span><br/>
-<span style="color: red" th:text="${message}"></span>
-<br/>
-<br/>
-<br/>
-<table border="1">
-    <thead>
-    <tr>
-        <th>员工姓名</th>
-        <th>菜名</th>
-        <th>总价</th>
-        <th>订餐时间</th>
-        <th>餐厅电话</th>
-        <th>餐厅名称</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="item: ${userBookList}">
-        <td th:text="${userMap.get(item.userId)}">...</td>
-        <td th:text="${cookBookMap.get(item.bookId).cookname}">...</td>
-        <th th:text="${item.price}">...</th>
-        <th th:text="${#dates.format(item.foodDateFormat,'yyyy-MM-dd HH:mm:ss')}">...</th>
-        <th th:text="${restaurantMap.get(cookBookMap.get(item.bookId).restauranId).TelephoneNumber}">...</th>
-        <td th:text="${restaurantMap.get(cookBookMap.get(item.bookId).restauranId).Name}">...</td>
-    </tr>
-    </tbody>
-</table>
-<div class="div_1">
-    <table border="1">
-        <thead>
-        <tr>
-            <th>菜名</th>
-            <th>餐厅名称</th>
-            <th>餐厅电话</th>
-            <th>单价</th>
-            <th>订餐时间</th>
-            <th>数量</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="items: ${CookBookDayAll}">
-            <td th:text="${items.cookname}">...</td>
-            <td th:text="${items.name}">...</td>
-            <th th:text="${items.telephoneNumber}">...</th>
-            <th th:text="${items.price}">...</th>
-            <th th:text="${#dates.format(items.updateTime,'yyyy-MM-dd HH:mm:ss')}">...</th>
-            <th th:text="${items.count}">...</th>
-        </tr>
-        </tbody>
-    </table>
+<div id="wrapper">
+    <div class="vertical-align-wrap">
+        <div class="vertical-align-middle">
+            <div class="auth-box ">
+                <div class="left">
+                    <div class="content">
+                        <div class="header">
+                            <div class="logo text-center"><img src="assets/img/logo-dark.png" alt="Klorofil Logo"></div>
+                            <p class="lead">登陆到Brilliantech</p>
+                        </div>
+                        <form class="form-auth-small" action="/cz/addlogin" method="get">
+                            <input id="message" type="hidden" th:value="${message}" />
+                            <div class="form-group">
+                                <label for="signin-email" class="control-label sr-only">用户名</label>
+                                <input type="text" class="form-control" id="signin-email" placeholder="用户名" name="userName">
+                            </div>
+                            <div class="form-group">
+                                <label for="signin-password" class="control-label sr-only">密码</label>
+                                <input type="password" class="form-control" id="signin-password" placeholder="密码" name="password">
+                            </div>
+                            <div class="form-group clearfix">
+                                <label class="fancy-checkbox element-left">
+                                    <input type="checkbox">
+                                    <span>记住我</span>
+                                </label>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg btn-block">登陆</button>
+                            <div class="bottom">
+                                <span class="helper-text"><i class="fa fa-lock"></i> <a href="#">忘记密码?</a></span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="overlay"></div>
+                    <div class="content text">
+                        <h1 class="heading">上海彩卓信息科技有限公司</h1>
+                        <p>Brilliantech</p>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
+
+<script src="assets/vendor/jquery/jquery.min.js"></script>
+<script>
+    $(window).load(function () {
+        debugger;
+        var message = $("#message").val();
+        if(message != undefined && message != ""){
+            alert(message);
+        }
+    });
+
+</script>
+
 </html>

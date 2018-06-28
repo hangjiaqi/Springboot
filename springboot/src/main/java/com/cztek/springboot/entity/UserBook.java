@@ -2,6 +2,7 @@ package com.cztek.springboot.entity;
 
 import com.cztek.springboot.utils.DataUtils;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
@@ -10,82 +11,51 @@ import java.util.Date;
 
 @Entity
 @Table(name = "user_book")
-@DynamicInsert
+@Data
 public class UserBook implements Serializable {
-
-
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private Integer userId;
-    private Integer bookId;
-    private Integer price;
-
-    private Date updateTime;
-    private String foodDate;
-    private Integer userBookId;
-
-    public String getFoodDate() {
-        return foodDate;
-    }
-
-    public void setFoodDate(String foodDate) {
-        this.foodDate = foodDate;
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Integer getUserBookId() {
-        return userBookId;
-    }
+    @Column(name = "id")
+    private int id;
 
-    public void setUserBookId(Integer userBookId) {
-        this.userBookId = userBookId;
-    }
+    @Column(name = "cook_book_id")
+    private int cookBookId;
 
-    public Integer getUserId() {
-        return userId;
-    }
+    @Column(name = "user_id")
+    private int userId;
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
+    @Column(name = "quantity")
+    private int quantity;
 
-    public Integer getBookId() {
-        return bookId;
-    }
+    @Column(name = "price")
+    private double price;
 
-    public void setBookId(Integer bookId) {
-        this.bookId = bookId;
-    }
+    @Column(name = "total")
+    private double total;
 
-    public Integer getPrice() {
-        return price;
-    }
-
-    public void setPrice(Integer price) {
-        this.price = price;
-    }
+    @Column(name = "food_type")
+    private int foodType;
 
     @JsonFormat(pattern = "yyyy-mm-dd hh:mm:ss")
-    public Date getUpdateTime() {
-        return updateTime;
-    }
+    @Column(name = "food_date")
+    private Date foodDate;
 
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
+    @Column(name = "is_valid")
+    private int isValid;
 
-    private Date foodDateFormat;
+    @Column(name = "create_user")
+    private int createUser;
 
-    @Transient
-    public Date getFoodDateFormat() {
-        return DataUtils.stringToDateByStamp(this.foodDate.substring(0, 13),DataUtils.DATE_TIME_FORMAT);
-    }
+    @JsonFormat(pattern = "yyyy-mm-dd hh:mm:ss")
+    @Column(name = "update_time")
+    private Date updateTime;
 
-    public void setFoodDateFormat(Date foodDateFormat) {
-        this.foodDateFormat = foodDateFormat;
-    }
+    @Column(name = "update_user")
+    private int updateUser;
+
+    @JsonFormat(pattern = "yyyy-mm-dd hh:mm:ss")
+    @Column(name = "create_time")
+    private Date createTime;
 }
 

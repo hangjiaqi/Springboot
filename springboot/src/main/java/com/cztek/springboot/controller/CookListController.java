@@ -17,12 +17,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/cz/czbook")
+@RequestMapping("/czbook/user/cook")
 @Slf4j
 public class CookListController {
     @Autowired
@@ -34,7 +35,7 @@ public class CookListController {
     @Autowired
     private IUserService userServce;
 
-    @RequestMapping("/user/cook")
+    @RequestMapping
     public String userCheck(@RequestParam(value = "userId") Integer userId,
                             @RequestParam(value = "check_val") Integer num[], Model model) {
         model.addAttribute("userId", userId);
@@ -48,12 +49,12 @@ public class CookListController {
         int resultPrice = 0;
         for (int i = 0; i < num.length; i++) {
             CookBook cookBook = cookBookService.findById(num[i]);
-            Integer price = cookBook.getPrice();
+            double price = cookBook.getPrice();
             sugPrice += price;
         }
         List<UserBook> findByUserIdAndFoodDate = userBookService.findByUserIdAndFoodDate(userId);
         for (UserBook userBook : findByUserIdAndFoodDate) {
-            Integer price = userBook.getPrice();
+            double price = userBook.getPrice();
             resultPrice += price;
         }
         Integer sub = sugPrice + resultPrice;
@@ -62,11 +63,10 @@ public class CookListController {
                 for (int i = 0; i < num.length; i++) {
                     UserBook userBook = new UserBook();
                     userBook.setUserId(userId);
-                    userBook.setBookId(num[i]);
+                    userBook.setCookBookId(num[i]);
                     CookBook cookBook = cookBookService.findById(num[i]);
                     userBook.setPrice(cookBook.getPrice());
-                    userBook.setFoodDate(String.valueOf(
-                            System.currentTimeMillis() + "" + userBook.getUserId() + "" + userBook.getBookId()));
+                    userBook.setFoodDate(new Date());
                     userBookService.save(userBook);
                 }
                 return "redirect:/cz/czbook/user/cook/restaurant/list?userId=" + userId;
@@ -81,7 +81,7 @@ public class CookListController {
         return "list";
     }
 
-    @RequestMapping("/user/cook/restaurant/list")
+    @RequestMapping("/restaurant/list")
     public String cookList(@RequestParam("userId") Integer userId, Model model) {
         List<UserBook> userBookList = userBookService.findByUserIdAndFoodDate(userId);
         Map<Integer, CookBook> cookBookMap = new HashMap<>();
@@ -89,11 +89,11 @@ public class CookListController {
         Map<Integer, Restaurant> restaurantMap = new HashMap<>();
         for (UserBook userbook : userBookList) {
             User user = userServce.findById(userbook.getUserId());
-            CookBook cookBook = cookBookService.findById(userbook.getBookId());
-            Restaurant restaurant = restaurantService.findOne(cookBook.getRestauranId());
+            CookBook cookBook = cookBookService.findById(userbook.getCookBookId());
+            Restaurant restaurant = restaurantService.findOne(cookBook.getRestaurantId());
             cookBookMap.put(cookBook.getId(), cookBook);
             restaurantMap.put(restaurant.getId(), restaurant);
-            userMap.put(user.getUserId(), user.getName());
+            userMap.put(user.getId(), user.getName());
         }
         model.addAttribute("userBookList", userBookList);
         model.addAttribute("restaurantMap", restaurantMap);

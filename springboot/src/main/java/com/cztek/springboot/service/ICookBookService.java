@@ -7,5 +7,6 @@ import com.cztek.springboot.entity.CookBook;
 public interface ICookBookService {
 
     List<CookBook> finAll();
+
     CookBook findById(Integer Id);
 }

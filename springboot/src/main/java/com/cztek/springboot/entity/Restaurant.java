@@ -1,6 +1,10 @@
 package com.cztek.springboot.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
+
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -8,50 +12,36 @@ import java.util.Set;
  * 餐厅实体
  */
 @Entity
+@Table(name = "restaurant")
+@Data
 public class Restaurant {
-
-    private Integer id;//餐厅主键
-    private String name;//餐厅名称
-    private String telephoneNumber;//餐厅电话
-
-    public String getTelephoneNumber() {
-        return telephoneNumber;
-    }
-
-    public void setTelephoneNumber(String telephoneNumber) {
-        this.telephoneNumber = telephoneNumber;
-    }
-
-    private List<CookBook> cookBookList;//菜单
-    private Set<CookBook> cookBookSet;//菜单
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "RestaurantId")
-    public Integer getId() {
-        return id;
-    }
+    @Column(name = "id")
+    private int id;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    @Column(name = "name")
+    private String name;
 
-    @Column(nullable = false)
-    public String getName() {
-        return name;
-    }
+    @Column(name = "telephone_number")
+    private String telephoneNumber;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    @Column(name = "is_valid")
+    private int isValid;
 
-    @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "restaurant",fetch = FetchType.EAGER)
-    public List<CookBook> getCookBookList() {
-        return cookBookList;
-    }
+    @Column(name = "create_user")
+    private int createUser;
 
-    public void setCookBookList(List<CookBook> cookBookList) {
-        this.cookBookList = cookBookList;
-    }
+    @JsonFormat(pattern = "yyyy-mm-dd hh:mm:ss")
+    @Column(name = "update_time")
+    private Date updateTime;
+
+    @Column(name = "update_user")
+    private int updateUser;
+
+    @JsonFormat(pattern = "yyyy-mm-dd hh:mm:ss")
+    @Column(name = "create_time")
+    private Date createTime;
 
 }
