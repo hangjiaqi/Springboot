@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <title>Title</title>
 <style type="text/css">
-.div_1{
+.div_1 {
 	float: left;
 }
 
@@ -35,75 +35,52 @@ table tr:nth-child(odd) {
 table tr:nth-child(even) {
 	background: #F5FAFA;
 }
+
+ul {
+	list-style: none;
+}
+
+ul li {
+	float: left;
+}
 </style>
-
 <script th:inline="javascript">
-	window.onload = function() {
-		var sub = document.getElementById("uname");
-		var check = document.getElementById("check");
-		var btn = document.getElementById("btn");
-		btn.onclick = function() {
-			if (sub.value == "" | sub.value == undefined) {
-				check.style.color = "red";
-				check.innerText = "名字不能为空";
-			} else {
-				window.location.href = "/cz/login/user/" + sub.value;
-			}
-		}
-		btn1.onclick = function() {
-			if (sub.value == "" | sub.value == undefined) {
-				check.style.color = "red";
-				check.innerText = "名字不能为空";
-			} else {
-				window.location.href = "/cz/update/login/user/" + sub.value;
-			}
-		}
-
-		btnfile.onclick = function() {
-			window.location.replace("/cz/add/");
-		}
-	}
 </script>
 </head>
 <body>
-	员工名字:
-	<input id="uname" type="text" name="username" />
-	<button id="btn">确定</button>
-	<button id="btn1">更换当日点餐</button>
-	<span id="check"></span>
+ <div th:include="navigation"></div> 
 	<br />
 	<span style="color: red" th:text="${message}"></span>
-	<input type="button" value="上传餐单" id="btnfile">
 	<br />
 	<br />
 	<br />
 	<table border="1">
-	<div class="div_1">
-		<thead>
-			<tr>
-				<th>员工姓名</th>
-				<th>菜名</th>
-				<th>总价</th>
-				<th>订餐时间</th>
-				<th>餐厅电话</th>
-				<th>餐厅名称</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr th:each="item: ${userBookList}">
-				<td th:text="${userMap.get(item.userId)}">...</td>
-				<td th:text="${cookBookMap.get(item.bookId).cookname}">...</td>
-				<th th:text="${item.price}">...</th>
-				<th
-					th:text="${#dates.format(item.foodDateFormat,'yyyy-MM-dd HH:mm:ss')}">...</th>
-				<th
-					th:text="${restaurantMap.get(cookBookMap.get(item.bookId).restauranId).TelephoneNumber}">...</th>
-				<td
-					th:text="${restaurantMap.get(cookBookMap.get(item.bookId).restauranId).Name}">...</td>
-			</tr>
-		</tbody>
+		<div class="div_1">
+			<thead>
+				<tr>
+					<th>员工姓名</th>
+					<th>菜名</th>
+					<th>总价</th>
+					<th>订餐时间</th>
+					<th>餐厅电话</th>
+					<th>餐厅名称</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="item: ${userBookList}">
+					<td th:text="${userMap.get(item.userId)}">...</td>
+					<td th:text="${cookBookMap.get(item.bookId).cookname}">...</td>
+					<th th:text="${item.price}">...</th>
+					<th
+						th:text="${#dates.format(item.foodDateFormat,'yyyy-MM-dd HH:mm:ss')}">...</th>
+					<th
+						th:text="${restaurantMap.get(cookBookMap.get(item.bookId).restauranId).TelephoneNumber}">...</th>
+					<td
+						th:text="${restaurantMap.get(cookBookMap.get(item.bookId).restauranId).Name}">...</td>
+				</tr>
+			</tbody>
 	</table>
-		</div>
+	</div>
 	<div class="div_2">
 		<table border="1">
 			<thead>

@@ -31,7 +31,7 @@ public class TxtToList {
 			int index=0;
 			line = br.readLine();
 			Integer salenum = Integer.valueOf(sale);
-			salenum=10/salenum;
+			float sales=(float) (salenum/10.0);
 			while (!StringUtils.isEmpty(line)) {
 				index++;
 				CookBook cookbook = new CookBook();
@@ -40,7 +40,7 @@ public class TxtToList {
 				if(indexOf>0 && lastIndexOf>1){
 					str = line.substring(0,indexOf);
 					price = Integer.valueOf(line.substring(lastIndexOf));
-					price =price*salenum;
+					price =(int) (price*sales);
 					if (checkNameChese(str) && price > 0) {
 						cookbook.setCookname(str);
 						cookbook.setPrice(price);

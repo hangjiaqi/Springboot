@@ -6,25 +6,15 @@
 <meta name="keywords" content="keyword1,keyword2,keyword3" />
 <meta name="description" content="this is my page" />
 <meta name="content-type" content="text/html; charset=UTF-8" />
-
 <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
-	$(function() {
-		$("#btn").on("click", function() {
-			if (window.confirm('确定要返回主页面吗')) {
-				window.location.href = '/cz/login';
-			} else {
-				return false;
-			}
-		});
-	});
 </script>
 
 </head>
 
 <body>
+<div th:include="navigation"></div>
 	<span style="color: red" th:text="${message}"></span>
-	<input id="btn" type="button" value="返回主页面" />
 </body>
 </html>

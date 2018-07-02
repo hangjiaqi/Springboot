@@ -1,6 +1,9 @@
 package com.cztek.springboot.service.impl;
 
+import com.cztek.springboot.Util.ObjectUtil;
 import com.cztek.springboot.entity.CookBook;
+import com.cztek.springboot.entity.CookBookVo;
+import com.cztek.springboot.entity.ModelVo;
 import com.cztek.springboot.repository.CookBookRepository;
 import com.cztek.springboot.service.ICookBookService;
 
@@ -46,4 +49,18 @@ public class CookBookServiceImpl implements ICookBookService {
 	public CookBook save(CookBook cookbook) {
 		return cookBookRepository.save(cookbook);
 	}
+
+	@Override
+	public List<CookBookVo> findByRestaurantAndCookName() {
+		List<Object[]> resultList = cookBookRepository.findByRestaurantAndCookName();
+		try {
+			return ObjectUtil.castEntity(resultList, CookBookVo.class);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	
 }

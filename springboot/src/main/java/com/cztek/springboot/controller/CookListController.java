@@ -2,6 +2,7 @@ package com.cztek.springboot.controller;
 
 import com.cztek.springboot.Util.DateFormat;
 import com.cztek.springboot.entity.CookBook;
+import com.cztek.springboot.entity.CookBookVo;
 import com.cztek.springboot.entity.Restaurant;
 import com.cztek.springboot.entity.User;
 import com.cztek.springboot.entity.UserBook;
@@ -102,5 +103,12 @@ public class CookListController {
 		model.addAttribute("cookBookMap", cookBookMap);
 		model.addAttribute("userMap", userMap);
 		return "listrestaurant";
+	}
+	
+	@GetMapping("/find")
+	public String cookFandAll(Model model){
+		List<CookBookVo> findByRestaurantAndCookName = cookBookService.findByRestaurantAndCookName();
+		model.addAttribute("cooklist", findByRestaurantAndCookName);
+		return "cooklist";
 	}
 }

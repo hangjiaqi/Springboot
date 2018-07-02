@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.cztek.springboot.entity.CookBook;
+import com.cztek.springboot.entity.CookBookVo;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -15,4 +16,7 @@ import java.util.List;
 public interface CookBookRepository extends JpaRepository<CookBook, Integer> {
 
 	List<CookBook> findByRestauranId(Integer Id);
+	
+	@Query(value="select rt.name,ck.price,ck.cookname from restaurant rt left join cook_book ck on rt.restaurant_id=ck.restaurant_id",nativeQuery=true)
+	List<Object[]> findByRestaurantAndCookName();
 }

@@ -59,16 +59,24 @@ public class RestaurantServiceImpl implements IRestaurantService {
 			List<CookBook> list = (List) msg.getContent();
 			Integer restauranId = restaurant.getId();
 			List<CookBook> cklist = cookBookService.findByRestaurantId(restauranId);
+			boolean flag = true;
 			for (CookBook msglist : list) {
 				for (CookBook cookbooklist : cklist) {
-					if (msglist.getCookname().equals(cookbooklist.getCookname())
-							&& (msglist.getPrice() != cookbooklist.getPrice())) {
+					if (msglist.getCookname().equals(cookbooklist.getCookname())&& (msglist.getPrice() != cookbooklist.getPrice())) {
 						cookbooklist.setPrice(msglist.getPrice());
 						cookBookService.save(cookbooklist);
 						break;
 					}
+					if (msglist.getCookname().equals(cookbooklist.getCookname())&& (msglist.getPrice() == cookbooklist.getPrice())) {
+						flag=false;
+						break;
+					}else{
+						flag=true;
+					}
 				}
-				cookBookService.save(msglist);
+				if(flag){
+					cookBookService.save(msglist);
+				}
 			}
 			msg.setMessage("餐单更新成功");
 		}

@@ -3,6 +3,7 @@ package com.cztek.springboot.service;
 import java.util.List;
 
 import com.cztek.springboot.entity.CookBook;
+import com.cztek.springboot.entity.CookBookVo;
 
 public interface ICookBookService {
 
@@ -15,4 +16,6 @@ public interface ICookBookService {
 	List<CookBook> findByRestaurantId(Integer Id);
 	
 	CookBook save(CookBook cookbook);
+	
+	List<CookBookVo> findByRestaurantAndCookName();
 }

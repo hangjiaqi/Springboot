@@ -32,13 +32,6 @@ table tr:nth-child(even) {
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script th:inline="javascript">
 	$(function() {
-		btn.onclick = function() {
-			if (window.confirm('确定要返回主页面吗')) {
-				window.location.href = '/cz/login';
-			} else {
-				return false;
-			}
-		}
 		$(".delete").on("click", function() {
 			var data = this.attributes["data"].value;
 			$.ajax({
@@ -65,7 +58,7 @@ table tr:nth-child(even) {
 </script>
 </head>
 <body>
-	<button id="btn">返回主页面</button>
+<div th:include="navigation"></div>
 	<table border="1">
 		<thead>
 			<tr>
