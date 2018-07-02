@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.cztek.springboot.Util.DateFormat;
 import com.cztek.springboot.entity.CookBook;
 import com.cztek.springboot.entity.Restaurant;
 import com.cztek.springboot.entity.User;
@@ -68,8 +69,14 @@ public class UpdateCookListController {
 	@ResponseBody
 	public Map<String, Integer> deleteUserBookId(@RequestParam(value = "data") Integer userBookId) {
 		Map<String, Integer> map = new HashMap<>();
+		String time = DateFormat.currentTime("17:00:00");
+		boolean resultInt = DateFormat.resultInt(time);
+		if (resultInt == true) {
 		int deleteUserBook = userBookService.deleteUserBook(userBookId);
 		map.put("message", deleteUserBook);
+		}else{
+			map.put("message",-1);
+		}
 		return map;
 	}
 }

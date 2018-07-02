@@ -14,6 +14,8 @@ public class Restaurant {
     private String name;//餐厅名称
     private String telephoneNumber;//餐厅电话
 
+    
+    @Column(name = "telephone_number")
     public String getTelephoneNumber() {
         return telephoneNumber;
     }
@@ -27,7 +29,7 @@ public class Restaurant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "RestaurantId")
+    @Column(name = "restaurant_id")
     public Integer getId() {
         return id;
     }

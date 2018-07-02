@@ -6,6 +6,13 @@ import com.cztek.springboot.entity.CookBook;
 
 public interface ICookBookService {
 
-    List<CookBook> finAll();
-    CookBook findById(Integer Id);
+	List<CookBook> finAll();
+
+	CookBook findById(Integer Id);
+
+	boolean uploadFile(List<CookBook> cookBooks);
+	
+	List<CookBook> findByRestaurantId(Integer Id);
+	
+	CookBook save(CookBook cookbook);
 }

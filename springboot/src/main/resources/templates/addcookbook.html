@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>addcookbook.html</title>
+	
+    <meta name="keywords" content="keyword1,keyword2,keyword3"/>
+    <meta name="description" content="this is my page"/>
+    <meta name="content-type" content="text/html; charset=UTF-8"/>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  
+  
+    <script th:inline="javascript">
+    </script>
+
+  </head>
+  
+  <body>
+  <form name="addcook" action="/cz/add/cook"  method="post" enctype ="multipart/form-data">
+    <input type="file" name="head_txt"><br/>
+    餐厅名称:<input type="text" name="repositoryname"/>
+    餐厅电话:<input type="text" name="repositorytelephone"/>
+    折扣:<select name="sale">
+  <option value="10">无折扣</option>  
+  <option value ="9">9</option>
+  <option value ="8">8</option>
+  <option value="7">7</option>
+</select>
+    <input type="submit" value="提交">
+</form>
+  </body>
+</html>

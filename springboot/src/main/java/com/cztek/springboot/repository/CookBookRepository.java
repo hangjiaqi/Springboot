@@ -12,6 +12,7 @@ import java.util.List;
 
 
 @Repository
-public interface CookBootRepository extends JpaRepository<CookBook, Integer> {
+public interface CookBookRepository extends JpaRepository<CookBook, Integer> {
 
+	List<CookBook> findByRestauranId(Integer Id);
 }

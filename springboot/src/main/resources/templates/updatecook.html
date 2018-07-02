@@ -6,6 +6,32 @@
 <meta name="keywords" content="keyword1,keyword2,keyword3" />
 <meta name="description" content="this is my page" />
 <meta name="content-type" content="text/html; charset=UTF-8" />
+<style type="text/css">
+table {
+	border-collapse: collapse;
+	margin: 0 auto;
+	text-align: center;
+}
+
+table td, table th {
+	border: 1px solid #cad9ea;
+	color: #666;
+	height: 30px;
+}
+
+table thead th {
+	background-color: #CCE8EB;
+	width: 100px;
+}
+
+table tr:nth-child(odd) {
+	background: #fff;
+}
+
+table tr:nth-child(even) {
+	background: #F5FAFA;
+}
+</style>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script th:inline="javascript">
 	$(function() {
@@ -28,10 +54,12 @@
 				success : function(data) {
 					if (data.message > 0) {
 						window.location.reload();
+					} else {
+						alert("已过17:00,不可再更改");
 					}
 				},
 				error : function() {
-					alert("已过17:00,不可再更改");
+					alert("请检查您的网络");
 				}
 			});
 		})
@@ -53,15 +81,19 @@
 			</tr>
 		</thead>
 		<tbody>
-		<tr th:each="item: ${userBookList}">
-        <td th:text="${userMap.get(item.userId)}">...</td>
-        <td th:text="${cookBookMap.get(item.bookId).cookname}">...</td>
-        <th th:text="${item.price}">...</th>
-        <th th:text="${#dates.format(item.foodDateFormat,'yyyy-MM-dd HH:mm:ss')}">...</th>
-        <th th:text="${restaurantMap.get(cookBookMap.get(item.bookId).restauranId).TelephoneNumber}">...</th>
-        <td th:text="${restaurantMap.get(cookBookMap.get(item.bookId).restauranId).Name}">...</td>
-        <td><a class="delete" href="javascript:void(0);" th:data="${item.userBookId}" id="a_herf">更改该订单</a></td>
-    </tr>
+			<tr th:each="item: ${userBookList}">
+				<td th:text="${userMap.get(item.userId)}">...</td>
+				<td th:text="${cookBookMap.get(item.bookId).cookname}">...</td>
+				<th th:text="${item.price}">...</th>
+				<th
+					th:text="${#dates.format(item.foodDateFormat,'yyyy-MM-dd HH:mm:ss')}">...</th>
+				<th
+					th:text="${restaurantMap.get(cookBookMap.get(item.bookId).restauranId).TelephoneNumber}">...</th>
+				<td
+					th:text="${restaurantMap.get(cookBookMap.get(item.bookId).restauranId).Name}">...</td>
+				<td><a class="delete" href="javascript:void(0);"
+					th:data="${item.userBookId}" id="a_herf">更改该订单</a></td>
+			</tr>
 		</tbody>
 	</table>
 </html>
