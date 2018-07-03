@@ -3,6 +3,7 @@ package com.cztek.springboot.service.impl;
 import com.cztek.springboot.Util.ObjectUtil;
 import com.cztek.springboot.entity.CookBook;
 import com.cztek.springboot.entity.CookBookVo;
+import com.cztek.springboot.entity.FindCookBookWeekVo;
 import com.cztek.springboot.entity.ModelVo;
 import com.cztek.springboot.repository.CookBookRepository;
 import com.cztek.springboot.service.ICookBookService;
@@ -18,10 +19,6 @@ public class CookBookServiceImpl implements ICookBookService {
 	@Autowired
 	private CookBookRepository cookBookRepository;
 
-	@Override
-	public List<CookBook> finAll() {
-		return cookBookRepository.findAll();
-	}
 
 	@Override
 	public CookBook findById(Integer Id) {
@@ -61,6 +58,21 @@ public class CookBookServiceImpl implements ICookBookService {
 		}
 		return null;
 	}
-	
-	
+
+	@Override
+	public List<CookBook> finAll() {
+		return cookBookRepository.findAll();
+	}
+
+	@Override
+	public List<FindCookBookWeekVo> findWeekCook(String day) {
+		List<Object[]> findWeekCookAndRestaurant = cookBookRepository.findWeekCookAndRestaurant(day);
+		try {
+			return ObjectUtil.castEntity(findWeekCookAndRestaurant, FindCookBookWeekVo.class);
+		} catch (Exception e) {
+			e.printStackTrace();
+		};
+		return null;
+	}
+
 }

@@ -4,9 +4,12 @@ import java.util.List;
 
 import com.cztek.springboot.entity.CookBook;
 import com.cztek.springboot.entity.CookBookVo;
+import com.cztek.springboot.entity.FindCookBookWeekVo;
 
 public interface ICookBookService {
-
+	
+	List<FindCookBookWeekVo> findWeekCook(String day);
+	
 	List<CookBook> finAll();
 
 	CookBook findById(Integer Id);

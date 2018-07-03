@@ -1,6 +1,9 @@
 package com.cztek.springboot.controller;
 
+import com.cztek.springboot.Enum.DateEunm;
+import com.cztek.springboot.Util.GetWeekDays;
 import com.cztek.springboot.entity.CookBook;
+import com.cztek.springboot.entity.FindCookBookWeekVo;
 import com.cztek.springboot.entity.ModelVo;
 import com.cztek.springboot.entity.Restaurant;
 import com.cztek.springboot.entity.User;
@@ -57,8 +60,9 @@ public class LoginController {
 	@GetMapping(value = "/user/{username}")
 	public String loginChek(@PathVariable(value = "username", required = true) String name, Model model) {
 		User user = userServce.findByName(name);
-		List<CookBook> cookBooks = cookBookService.finAll();
-		model.addAttribute("cookBooks", cookBooks);
+		String valueOf =String.valueOf(GetWeekDays.getWeekOfDate(new Date()));
+		List<FindCookBookWeekVo> findWeekCook = cookBookService.findWeekCook(valueOf);
+		model.addAttribute("cookBooks", findWeekCook);
 		if (user != null) {
 			model.addAttribute("userId", user.getUserId());
 			return "list";

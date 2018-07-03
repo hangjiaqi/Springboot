@@ -13,9 +13,19 @@ public class Restaurant {
     private Integer id;//餐厅主键
     private String name;//餐厅名称
     private String telephoneNumber;//餐厅电话
-
     
-    @Column(name = "telephone_number")
+    private String workSchdule;
+
+    @Column(name = "work_schedule")
+    public String getWorkSchdule() {
+		return workSchdule;
+	}
+
+	public void setWorkSchdule(String workSchdule) {
+		this.workSchdule = workSchdule;
+	}
+
+	@Column(name = "telephone_number")
     public String getTelephoneNumber() {
         return telephoneNumber;
     }

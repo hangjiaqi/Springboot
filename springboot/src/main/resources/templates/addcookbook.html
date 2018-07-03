@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>addcookbook.html</title>
+    <title>上传菜单</title>
 	
     <meta name="keywords" content="keyword1,keyword2,keyword3"/>
     <meta name="description" content="this is my page"/>
     <meta name="content-type" content="text/html; charset=UTF-8"/>
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <style type="text/css">
+  .fount{
+  color:red;
+  }
+  </style>
   
     <script th:inline="javascript">
     </script>
@@ -15,6 +20,11 @@
   
   <body>
   <div th:include="navigation"></div>
+  <span class="fount">上传须知:</span>
+<div><p class="fount">上传菜单必须填写餐厅名称与餐厅电话,上传文件类型(csv,txt)保存类型必须是UTF-8格式,上传须知:如果菜名重复则更新,如果菜名不重复则插入,菜名不得包含特殊字符以及数字,只能是中文</p></div>
+<span class="fount">txt格式如下(csv格式则省略逗号):</span><br/>
+<span>菜名,价格</span><br/>
+<span>菜名,价格</span>
   <form name="addcook" action="/cz/add/cook"  method="post" enctype ="multipart/form-data">
     <input type="file" name="head_txt"><br/>
    <input type="text" id="Rid" name="repositoryname"/>

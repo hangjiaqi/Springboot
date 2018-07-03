@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<title>Title</title>
+<title>选择菜单</title>
 <style>
 * {
 	padding: 0;
@@ -112,24 +112,24 @@ table tr:nth-child(even) {
 				<tr>
 					<th>餐厅编号</th>
 					<th>餐厅名称</th>
+					<th>订餐电话</th>
 					<th>菜编号</th>
 					<th>菜</th>
 					<th>价格</th>
 					<th>单拼价格</th>
-					<th>订餐电话</th>
 					<th>请选择</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="cookBook: ${cookBooks}">
-					<td th:text="${cookBook.restauranId}">...</td>
-					<td th:text="${cookBook.restaurant.name}">...</td>
-					<td th:text="${cookBook.id}">...</td>
+					<td th:text="${cookBook.restaurant_id}">...</td>
+					<td th:text="${cookBook.name}">...</td>
+					<td th:text="${cookBook.telephone_number}">...</td>
+					<td th:text="${cookBook.cook_id}">...</td>
 					<td th:text="${cookBook.cookname}">...</td>
 					<td th:text="${cookBook.price}" name="price_name">...</td>
-					<td th:text="${cookBook.salePrice}">此商品没有单拼价格</td>
-					<td th:text="${cookBook.restaurant.telephoneNumber}">...</td>
-					<td><input type="checkbox" th:value="${cookBook.id}"
+					<td th:text="${cookBook.sale_price}">此商品没有单拼价格</td>
+					<td><input type="checkbox" th:value="${cookBook.cook_id}"
 						name="check" /></td>
 				</tr>
 			</tbody>
