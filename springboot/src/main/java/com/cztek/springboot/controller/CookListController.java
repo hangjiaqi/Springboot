@@ -1,11 +1,8 @@
 package com.cztek.springboot.controller;
 
 import com.cztek.springboot.Util.DateFormat;
-import com.cztek.springboot.entity.CookBook;
-import com.cztek.springboot.entity.CookBookVo;
-import com.cztek.springboot.entity.Restaurant;
-import com.cztek.springboot.entity.User;
-import com.cztek.springboot.entity.UserBook;
+import com.cztek.springboot.Util.GetWeekDays;
+import com.cztek.springboot.entity.*;
 import com.cztek.springboot.service.ICookBookService;
 import com.cztek.springboot.service.IRestaurantService;
 import com.cztek.springboot.service.IUserBookService;
@@ -24,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,7 +42,6 @@ public class CookListController {
 	public String userCheck(@RequestParam(value = "userId") Integer userId,
 			@RequestParam(value = "check_val") Integer num[], Model model) {
 		model.addAttribute("userId", userId);
-		
 		int sugPrice = 0;
 		String time = DateFormat.currentTime("17:00:00");
 		boolean resultInt = DateFormat.resultInt(time);
@@ -60,7 +57,8 @@ public class CookListController {
 			resultPrice += price;
 		}
 		Integer sub = sugPrice + resultPrice;
-		if (sugPrice <= 30 && resultPrice <= 30 && sub <= 30) {
+		int max =35;
+		if (sugPrice <= max && resultPrice <= max && sub <= max) {
 			if (resultInt == true) {
 				for (int i = 0; i < num.length; i++) {
 					UserBook userBook = new UserBook();
@@ -69,7 +67,7 @@ public class CookListController {
 					CookBook cookBook = cookBookService.findById(num[i]);
 					userBook.setPrice(cookBook.getPrice());
 					userBook.setFoodDate(String.valueOf(
-							System.currentTimeMillis() + "" + userBook.getUserId() + "" + userBook.getBookId()));
+					System.currentTimeMillis() + "" + userBook.getUserId() + "" + userBook.getBookId()));
 					userBookService.save(userBook);
 				}
 				return "redirect:/czbook/user/cook/restaurant/list?userId=" + userId;
@@ -77,10 +75,11 @@ public class CookListController {
 				model.addAttribute("msg", "已超过5点不能点餐");
 			}
 		} else {
-			model.addAttribute("msg", "当前点餐金额不得超过30元");
+			model.addAttribute("msg", "当前点餐金额不得超过35元");
 		}
-		List<CookBook> cookBooks = cookBookService.finAll();
-		model.addAttribute("cookBooks", cookBooks);
+		String valueOf =String.valueOf(GetWeekDays.getWeekOfDate(new Date()));
+		List<FindCookBookWeekVo> findWeekCook = cookBookService.findWeekCook(valueOf);
+		model.addAttribute("cookBooks", findWeekCook);
 		return "list";
 	}
 

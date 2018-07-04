@@ -2,11 +2,12 @@
 <html>
 <head>
 <title>校验员工订餐情况</title>
-
+	<link rel="icon" type="image/x-icon" th:href="@{/restaurant.ico}">
 <meta name="keywords" content="keyword1,keyword2,keyword3" />
 <meta name="description" content="this is my page" />
 <meta name="content-type" content="text/html; charset=UTF-8" />
-
+<STYLE>
+</STYLE>
 <script type="text/javascript">
 	window.onload = function() {
 		var sub = document.getElementById("uname");
@@ -34,6 +35,7 @@
 
 <body>
  <div th:include="navigation"></div>
+ <h1 style="color: red">请订餐的同学在每天的17点之前进行订餐。原则上订餐是为了当日工作晚的同学（20点之后）提供的服务。</h1><br/><br/>
 	<label for="uname">员工名字:</label>
 	<input id="uname" type="text" name="username" />
 	<button id="btn">确定</button>

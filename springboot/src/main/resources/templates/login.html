@@ -46,17 +46,21 @@ ul li {
 </style>
 <script th:inline="javascript">
 </script>
+	<link rel="icon" type="image/x-icon" th:href="@{/restaurant.ico}">
 </head>
 <body>
- <div th:include="navigation"></div> 
+ <div th:include="navigation"></div>
 	<br />
 	<span style="color: red" th:text="${message}"></span>
 	<br />
 	<br />
 	<br />
+ <div class="div_1">
 	<table border="1">
-		<div class="div_1">
 			<thead>
+            <tr>
+                <th colspan="6">今日点餐详情</th>
+            </tr>
 				<tr>
 					<th>员工姓名</th>
 					<th>菜名</th>
@@ -80,11 +84,14 @@ ul li {
 				</tr>
 			</tbody>
 	</table>
-	</div>
+ </div>
 	<div class="div_2">
 		<table border="1">
-			<thead>
-				<tr>
+            <thead>
+            <tr>
+            <th colspan="6">今日点餐汇总</th>
+            </tr>
+            <tr>
 					<th>菜名</th>
 					<th>餐厅名称</th>
 					<th>餐厅电话</th>
@@ -93,7 +100,7 @@ ul li {
 					<th>数量</th>
 				</tr>
 			</thead>
-			<tbody>
+            <tbody>
 				<tr th:each="items: ${CookBookDayAll}">
 					<td th:text="${items.cookname}">...</td>
 					<td th:text="${items.name}">...</td>
@@ -103,7 +110,7 @@ ul li {
 					<th th:text="${items.count}">...</th>
 				</tr>
 			</tbody>
-		</table>
+        </table>
 	</div>
 </body>
 </html>
