@@ -8,9 +8,16 @@
     <meta name="content-type" content="text/html; charset=UTF-8"/>
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <style type="text/css">
-  .fount{
-  color:red;
-  }
+      a{
+          text-decoration: none;
+          color: deepskyblue;
+      }
+      a:HOVER{
+          color:#e33333;
+      }
+      p{
+          color:red;
+      }
   </style>
   
     <script th:inline="javascript">
@@ -20,11 +27,9 @@
   
   <body>
   <div th:include="navigation"></div>
-  <span class="fount">上传须知:</span>
-<div><p class="fount">上传菜单必须填写餐厅名称与餐厅电话,上传文件类型(csv,txt)保存类型必须是UTF-8格式,上传须知:如果菜名重复则更新,如果菜名不重复则插入,菜名不得包含特殊字符以及数字,只能是中文</p></div>
-<span class="fount">txt格式如下(csv格式则省略逗号):</span><br/>
-<span>菜名,价格</span><br/>
-<span>菜名,价格</span>
+  <a href="/cz/download/csv">下载上传菜单模板</a>
+  <br/>
+  <p>上传须知:菜名必须为中文不得包含数字字母,特殊字符</p>
   <form name="addcook" action="/cz/add/cook"  method="post" enctype ="multipart/form-data">
     <input type="file" name="head_txt"><br/>
    <input type="text" id="Rid" name="repositoryname"/>

@@ -1,0 +1,12 @@
+FROM ubuntu:latest
+MAINTAINER Hangjiaqi
+
+COPY jdk1.8.0_171 /usr/local/jdk
+COPY CZ.jar /usr/local/jar/CZ.jar
+ 
+ENV JAVA_HOME=/usr/local/jdk/
+ENV PATH=$PATH:$JAVA_HOME/bin
+ENV CLASSPATH=$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+
+
+EXPOSE 9890
