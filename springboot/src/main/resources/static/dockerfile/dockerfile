@@ -10,3 +10,5 @@ ENV CLASSPATH=$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
 
 
 EXPOSE 9890
+
+ENTRYPOINT ["java","-jar","/usr/local/jar/CZ.jar"]
