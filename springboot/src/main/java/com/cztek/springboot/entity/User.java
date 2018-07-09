@@ -2,6 +2,7 @@ package com.cztek.springboot.entity;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Entity
@@ -14,33 +15,37 @@ public class User {
     private List<CookBook> cookBookList; //餐单
 
 
-
-    @Column(nullable=false,length=4)
+    @Column(nullable = false, length = 4)
     public String getName() {
         return name;
     }
+
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="userId")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     public Integer getUserId() {
         return userId;
     }
+
     public void setUserId(Integer userId) {
         this.userId = userId;
     }
+
     public void setName(String name) {
         this.name = name;
     }
-    @Column(nullable=true)
+
+    @Column(nullable = true)
     public Integer getPermission() {
         return permission;
     }
+
     public void setPermission(Integer permission) {
         this.permission = permission;
     }
 
-   @JoinTable(name="User_CookBook",joinColumns={@JoinColumn(name="user_id", referencedColumnName="userId")},inverseJoinColumns={@JoinColumn(name="cook_id", referencedColumnName="cook_Id")})
-    @ManyToMany(fetch=FetchType.LAZY)
+    @JoinTable(name = "user_cookbook", joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "user_id")}, inverseJoinColumns = {@JoinColumn(name = "cook_id", referencedColumnName = "cook_id")})
+    @ManyToMany(fetch = FetchType.LAZY)
     public List<CookBook> getCookBookList() {
         return cookBookList;
     }

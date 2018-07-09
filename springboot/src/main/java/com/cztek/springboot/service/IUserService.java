@@ -4,5 +4,6 @@ import com.cztek.springboot.entity.User;
 
 public interface IUserService {
 	 User findByName(String name);
-	    User findById(Integer Id);
+	 User findById(Integer Id);
+	 User addUser(String name);
 }

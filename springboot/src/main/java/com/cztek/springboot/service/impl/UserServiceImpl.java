@@ -33,4 +33,12 @@ public class UserServiceImpl implements IUserService {
 	        User user = userRepository.findById(Id).orElse(null);
 	        return user;
 	    }
+
+	@Override
+	public User addUser(String name) {
+	    	User user = new User();
+	    	user.setName(name);
+	    	user.setPermission(1);
+		return userRepository.save(user);
+	}
 }

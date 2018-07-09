@@ -5,8 +5,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "cook_book")
-public class CookBook{
-
+public class CookBook {
 
 
     private Integer id;//主键
@@ -27,7 +26,7 @@ public class CookBook{
     }
 
     @ManyToOne
-    @JoinColumn(name = "restaurant_id",insertable = false,updatable = false)
+    @JoinColumn(name = "restaurant_id", insertable = false, updatable = false)
     public Restaurant getRestaurant() {
         return restaurant;
     }

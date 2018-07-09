@@ -18,10 +18,10 @@ public class UserBook implements Serializable {
 
 
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private Integer userId;
+     *
+     */
+    private static final long serialVersionUID = 1L;
+    private Integer userId;
     private Integer bookId;
     private Integer price;
 
@@ -84,7 +84,7 @@ public class UserBook implements Serializable {
 
     @Transient
     public Date getFoodDateFormat() {
-        return DataUtils.stringToDateByStamp(this.foodDate.substring(0, 13),DataUtils.DATE_TIME_FORMAT);
+        return DataUtils.stringToDateByStamp(this.foodDate.substring(0, 13), DataUtils.DATE_TIME_FORMAT);
     }
 
     public void setFoodDateFormat(Date foodDateFormat) {
