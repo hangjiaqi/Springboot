@@ -1,6 +1,7 @@
 package com.cztek.springboot.service.impl;
 
 import com.cztek.springboot.Util.ObjectUtil;
+import com.cztek.springboot.entity.FindMonthOrder;
 import com.cztek.springboot.entity.ModelVo;
 import com.cztek.springboot.entity.UserBook;
 import com.cztek.springboot.repository.UserBookRepository;
@@ -55,4 +56,15 @@ public class UserBookServiceImpl implements IUserBookService {
 		return userBookRepository.findByUserId(id);
 	}
 
+
+	@Override
+	public List<FindMonthOrder> findMonthOrder() {
+		try {
+		List<Object[]> resultList = userBookRepository.findMonthOrder();
+		return ObjectUtil.castEntity(resultList, FindMonthOrder.class);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

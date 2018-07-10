@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>查看当月订餐详情</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/restaurant.ico}">
+    <meta name="keywords" content="keyword1,keyword2,keyword3" />
+    <meta name="description" content="this is my page" />
+    <meta name="content-type" content="text/html; charset=UTF-8" />
+
+
+    <style type="text/css">
+        table {
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        table td, table th {
+            border: 1px solid #cad9ea;
+            color: #666;
+            height: 10px;
+        }
+
+        table thead th {
+            background-color: #CCE8EB;
+            width: 100px;
+        }
+
+        table tr:nth-child(odd) {
+            background: #fff;
+        }
+
+        table tr:nth-child(even) {
+            background: #F5FAFA;
+        }
+    </style>
+    <link rel="stylesheet"
+          href="http://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script
+            src="http://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#myTable').DataTable({
+                language : {
+                    "sProcessing" : "处理中...",
+                    "sLengthMenu" : "显示 _MENU_ 项结果",
+                    "sZeroRecords" : "没有匹配结果",
+                    "sInfo" : "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+                    "sInfoEmpty" : "显示第 0 至 0 项结果，共 0 项",
+                    "sInfoFiltered" : "(由 _MAX_ 项结果过滤)",
+                    "sInfoPostFix" : "",
+                    "sSearch" : "搜索:",
+                    "sUrl" : "",
+                    "sEmptyTable" : "表中数据为空",
+                    "sLoadingRecords" : "载入中...",
+                    "sInfoThousands" : ",",
+                    "oPaginate" : {
+                        "sFirst" : "首页",
+                        "sPrevious" : "上页",
+                        "sNext" : "下页",
+                        "sLast" : "末页"
+                    },
+                    "oAria" : {
+                        "sSortAscending" : ": 以升序排列此列",
+                        "sSortDescending" : ": 以降序排列此列"
+                    }
+                }
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+<div th:include="navigation"></div>
+<table class="hover" border="1" id="myTable"
+       style="height:50%;width:70%">
+    <thead>
+    <tr>
+        <th>餐厅</th>
+        <th>电话</th>
+        <th>总金额</th>
+        <th>月份</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item: ${listmsg}">
+        <td th:text="${item.name}">...</td>
+        <td th:text="${item.telephone_number}">...</td>
+        <td th:text="${item.allPrice}">...</td>
+        <td th:text="${item.month}">...</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
