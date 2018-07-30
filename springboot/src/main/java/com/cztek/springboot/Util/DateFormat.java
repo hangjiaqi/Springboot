@@ -278,10 +278,10 @@ public class DateFormat {
     /** 
      * 强制类型转换 从串到时间戳 
      *  
-     * @param sDate 
-     *            源串 
-     * @param sFormat 
-     *            遵循格式 
+     * @param sDate
+     *            源串
+     * @param sFormat
+     *            遵循格式
      * @return 取得的时间戳对象 
      * @throws ParseException 
      */  
@@ -305,8 +305,9 @@ public class DateFormat {
      *  
      * @return java.sql.Timestamp 
      **/  
-    public static Timestamp getCurTimestamp() {  
-        return new Timestamp(new Date().getTime());  
+    @SuppressWarnings("AlibabaAvoidNewDateGetTime")
+    public static Timestamp getCurTimestamp() {
+        return new Timestamp(System.currentTimeMillis());
     }  
   
     /** 
@@ -412,7 +413,7 @@ public class DateFormat {
                     "date1[%s] not be less than date2[%s].", mim1 + "", mim2  
                             + ""));  
         }  
-        long m = (mim1 - mim2 + 1) / 1000l;  
+        long m = (mim1 - mim2 + 1) / 1000L;
         long mday = 24 * 3600;  
         final Map<String, Long> map = new HashMap<String, Long>();  
         map.put("day", m / mday);  
@@ -470,5 +471,6 @@ public class DateFormat {
      public static void main(String[] args) {
 		Integer indexToInteger = indexToInteger("17:00:00");
 		System.out.println(indexToInteger);
+
 	}
 }  

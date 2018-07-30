@@ -5,7 +5,6 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.cztek.springboot.entity.ModelVo;
 import com.cztek.springboot.entity.UserBook;
 
 import java.util.List;
@@ -36,4 +35,7 @@ public interface UserBookRepository extends JpaRepository<UserBook, Integer> {
             "where DATE_FORMAT(ub.update_time,'%Y%m') = DATE_FORMAT(CURDATE(), '%Y%m')\n" +
             "group by r.restaurant_id;", nativeQuery = true)
     List<Object[]> findMonthOrder();
+
+    @Query(value = "select count(1) from user_book u where DATE_FORMAT(u.update_time,'%Y-%m-%d') = DATE_FORMAT(CURDATE(),'%Y-%m-%d')",nativeQuery = true)
+    int findIntradayOrder();
 }

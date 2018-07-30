@@ -1,7 +1,7 @@
 package com.cztek.springboot.controller;
 
 import com.cztek.springboot.entity.User;
-import com.cztek.springboot.entity.UserVo;
+import com.cztek.springboot.vo.UserVo;
 import com.cztek.springboot.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

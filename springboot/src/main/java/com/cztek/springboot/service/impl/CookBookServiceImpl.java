@@ -2,9 +2,8 @@ package com.cztek.springboot.service.impl;
 
 import com.cztek.springboot.Util.ObjectUtil;
 import com.cztek.springboot.entity.CookBook;
-import com.cztek.springboot.entity.CookBookVo;
-import com.cztek.springboot.entity.FindCookBookWeekVo;
-import com.cztek.springboot.entity.ModelVo;
+import com.cztek.springboot.vo.CookBookVo;
+import com.cztek.springboot.vo.FindCookBookWeekVo;
 import com.cztek.springboot.repository.CookBookRepository;
 import com.cztek.springboot.service.ICookBookService;
 

@@ -4,7 +4,7 @@ package com.cztek.springboot.service;
 import java.util.List;
 
 import com.cztek.springboot.entity.FindMonthOrder;
-import com.cztek.springboot.entity.ModelVo;
+import com.cztek.springboot.vo.ModelVo;
 import com.cztek.springboot.entity.UserBook;
 
 
@@ -23,5 +23,7 @@ public interface IUserBookService {
 	List<UserBook> findByUserId(Integer id);
 
 	List<FindMonthOrder> findMonthOrder();
+
+	int findIntradayOrder();
 
 }

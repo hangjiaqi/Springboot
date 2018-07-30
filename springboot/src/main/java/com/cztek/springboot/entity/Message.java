@@ -52,6 +52,7 @@ public class Message {
         this.result = result;
     }
 
+    @Override
     public String toString() {
         String result = "";
         for (String s : new HashSet<>(messages)) {

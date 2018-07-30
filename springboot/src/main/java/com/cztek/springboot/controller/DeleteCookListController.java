@@ -12,7 +12,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cztek.springboot.Util.DateFormat;
 import com.cztek.springboot.service.IUserBookService;
-
+/**
+ * @Author:杭佳琦
+ * @Description:删除点菜订单Controller
+ * @Date: 11:03 2018/7/12
+ */
 @Controller
 @RequestMapping("/delete")
 public class DeleteCookListController {
@@ -26,7 +30,7 @@ public class DeleteCookListController {
 		Map<String, Integer> map = new HashMap<>();
 		String time = DateFormat.currentTime("17:00:00");
 		boolean resultInt = DateFormat.resultInt(time);
-		if (resultInt == true) {
+		if (resultInt) {
 		int deleteUserBook = userBookService.deleteUserBook(userBookId);
 		map.put("message", deleteUserBook);
 		}else{

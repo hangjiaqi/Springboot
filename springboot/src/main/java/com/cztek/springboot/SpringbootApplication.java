@@ -8,11 +8,14 @@ import org.springframework.boot.web.server.ErrorPage;
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.http.HttpStatus;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 
 @SpringBootApplication
 @Configuration
+@EnableScheduling
 public class SpringbootApplication {
         @Bean
     public MultipartConfigElement multipartConfigElement() {

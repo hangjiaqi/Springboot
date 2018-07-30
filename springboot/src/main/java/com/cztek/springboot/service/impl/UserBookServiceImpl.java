@@ -2,7 +2,7 @@ package com.cztek.springboot.service.impl;
 
 import com.cztek.springboot.Util.ObjectUtil;
 import com.cztek.springboot.entity.FindMonthOrder;
-import com.cztek.springboot.entity.ModelVo;
+import com.cztek.springboot.vo.ModelVo;
 import com.cztek.springboot.entity.UserBook;
 import com.cztek.springboot.repository.UserBookRepository;
 import com.cztek.springboot.service.IUserBookService;
@@ -10,8 +10,6 @@ import com.cztek.springboot.service.IUserBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -66,5 +64,10 @@ public class UserBookServiceImpl implements IUserBookService {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	@Override
+	public int findIntradayOrder() {
+		return userBookRepository.findIntradayOrder();
 	}
 }

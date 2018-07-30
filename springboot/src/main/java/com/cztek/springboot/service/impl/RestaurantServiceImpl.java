@@ -62,12 +62,12 @@ public class RestaurantServiceImpl implements IRestaurantService {
 			boolean flag = true;
 			for (CookBook msglist : list) {
 				for (CookBook cookbooklist : cklist) {
-					if (msglist.getCookname().equals(cookbooklist.getCookname())&& (msglist.getPrice() != cookbooklist.getPrice())) {
+					if (msglist.getCookname().equals(cookbooklist.getCookname())&& (!msglist.getPrice().equals(cookbooklist.getPrice()))) {
 						cookbooklist.setPrice(msglist.getPrice());
 						cookBookService.save(cookbooklist);
 						break;
 					}
-					if (msglist.getCookname().equals(cookbooklist.getCookname())&& (msglist.getPrice() == cookbooklist.getPrice())) {
+					if (msglist.getCookname().equals(cookbooklist.getCookname())&& (msglist.getPrice().equals(cookbooklist.getPrice()))) {
 						flag=false;
 						break;
 					}else{

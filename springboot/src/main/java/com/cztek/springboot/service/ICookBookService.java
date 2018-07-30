@@ -3,8 +3,8 @@ package com.cztek.springboot.service;
 import java.util.List;
 
 import com.cztek.springboot.entity.CookBook;
-import com.cztek.springboot.entity.CookBookVo;
-import com.cztek.springboot.entity.FindCookBookWeekVo;
+import com.cztek.springboot.vo.CookBookVo;
+import com.cztek.springboot.vo.FindCookBookWeekVo;
 
 public interface ICookBookService {
 	

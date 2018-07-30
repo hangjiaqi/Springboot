@@ -1,49 +1,51 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>上传菜单</title>
-      <link rel="icon" type="image/x-icon" th:href="@{/restaurant.ico}">
+    <link rel="icon" type="image/x-icon" th:href="@{/restaurant.ico}">
     <meta name="keywords" content="keyword1,keyword2,keyword3"/>
     <meta name="description" content="this is my page"/>
     <meta name="content-type" content="text/html; charset=UTF-8"/>
-  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-  <style type="text/css">
-      a{
-          text-decoration: none;
-          color: deepskyblue;
-      }
-      a:HOVER{
-          color:#e33333;
-      }
-      p{
-          color:red;
-      }
-  </style>
-  
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <style type="text/css">
+        a {
+            text-decoration: none;
+            color: deepskyblue;
+        }
+
+        a:HOVER {
+            color: #e33333;
+        }
+
+        p {
+            color: red;
+        }
+    </style>
+
     <script th:inline="javascript">
     </script>
 
-  </head>
-  
-  <body>
-  <div th:include="navigation"></div>
-  <a href="/cz/download/csv">下载上传菜单模板</a>
-  <br/>
-  <p>上传须知:菜名必须为中文不得包含数字字母,特殊字符</p>
-  <form name="addcook" action="/cz/add/cook"  method="post" enctype ="multipart/form-data">
+</head>
+
+<body>
+<div th:include="navigation"></div>
+<a href="/cz/download/csv">下载上传菜单模板</a>
+<br/>
+<p>上传须知:菜名必须为中文不得包含数字字母,特殊字符,餐厅名称与餐厅电话必须填写</p>
+<form name="addcook" action="/cz/add/cook" method="post" enctype="multipart/form-data">
     <input type="file" name="head_txt"><br/>
-   <input type="text" id="Rid" name="repositoryname"/>
     <label for="Rid"> 餐厅名称</label>
-<input type="text" id="Rtel"name="repositorytelephone"/>
+    <input type="text" id="Rid" name="repositoryname"/>
     <label for="Rtel">餐厅电话</label>
+    <input type="text" id="Rtel" name="repositorytelephone"/>
     <label for="Rsal">折扣</label>
     <select name="sale" id="Rsal">
-  <option value="10">无折扣</option>  
-  <option value ="9">9</option>
-  <option value ="8">8</option>
-  <option value="7">7</option>
-</select>
+        <option value="10">无折扣</option>
+        <option value="9">9</option>
+        <option value="8">8</option>
+        <option value="7">7</option>
+    </select>
     <input type="submit" value="提交">
 </form>
-  </body>
+</body>
 </html>

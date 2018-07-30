@@ -1,4 +1,4 @@
-package com.cztek.springboot.entity;
+package com.cztek.springboot.vo;
 
 import java.math.BigInteger;
 import java.util.Date;
