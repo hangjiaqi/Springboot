@@ -38,7 +38,6 @@ public class Jobs{
         mailMessage.setFrom("info@cz-tek.com");
         //接收者
         mailMessage.setTo("yanhong.liu@cz-tek.com","yanping.lang@cz-tek.com","zimei.wu@cz-tek.com");
-        //mailMessage.setTo("zimei.wu@cz-tek.com","jiaqi.hang@cz-tek.com");
         //发送标题
         mailMessage.setSubject(message);
         mailMessage.setText(text);
