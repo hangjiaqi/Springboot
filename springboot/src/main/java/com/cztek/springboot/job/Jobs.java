@@ -21,7 +21,7 @@ public class Jobs{
     private IUserBookService userBookService;
 
     //@Scheduled(cron = "*/30 * * * * ?")
-    @Scheduled(cron = "0 0 17 ? * 2-6")
+    @Scheduled(cron = "0 0 17 ? 0 MON-FRI *")
     public void scheduledMethod(){
         int number=userBookService.findIntradayOrder();
         if(number>0){
