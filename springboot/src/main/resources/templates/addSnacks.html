@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>上传零食</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/restaurant.ico}">
+    <meta name="keywords" content="keyword1,keyword2,keyword3"/>
+    <meta name="description" content="this is my page"/>
+    <meta name="content-type" content="text/html; charset=UTF-8"/>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <style type="text/css">
+        a {
+            text-decoration: none;
+            color: deepskyblue;
+        }
+
+        a:HOVER {
+            color: #e33333;
+        }
+
+        p {
+            color: red;
+        }
+    </style>
+
+    <script th:inline="javascript">
+    </script>
+
+</head>
+
+<body>
+<div th:include="navigation"></div>
+<a href="/cz/snacks/download/csv">下载上传零食模板</a>
+<br/>
+<p>上传须知:零食必须为中文不得包含数字字母,特殊字符,零食店名称必须填写(零食店名称与零食店网站必须填写至少一个)</p>
+<form name="snacks" action="/cz/snacksDetail/add/" method="post" enctype="multipart/form-data">
+    <input type="file" name="head_txt"><br/>
+    <label for="Sname"> 零食店名称</label>
+    <input type="text" id="Sname" name="name"/>
+    <label for="Sphone">零食店电话</label>
+    <input type="text" id="Sphone" name="phone"/>
+    <label for="SUrl">零食店网址</label>
+    <input type="text" id="SUrl" name="url"/>
+    <input type="submit" value="提交">
+</form>
+</body>
+</html>

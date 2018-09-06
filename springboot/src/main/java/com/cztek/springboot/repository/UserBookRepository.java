@@ -23,7 +23,7 @@ public interface UserBookRepository extends JpaRepository<UserBook, Integer> {
     @Query(value = "delete from user_book where user_book_id=?1", nativeQuery = true)
     int deleteUserBookId(Integer userBookId);
 
-    @Query(value = "select cb.cookname,cb.price,r.name,r.telephone_Number as telephoneNumber,ub.update_time as updateTime,count(cb.cookname) as count from restaurant r LEFT JOIN cook_book cb on r.restaurant_id = cb.restaurant_id LEFT JOIN user_book ub on cb.cook_id = ub.book_id where DATE_FORMAT(ub.update_time,'%Y-%m-%d') = DATE_FORMAT(now(),'%Y-%m-%d') group by cb.cookname,r.name", nativeQuery = true)
+    @Query(value = "select cb.cookname,cb.price,r.name,r.telephone_Number as telephoneNumber,ub.update_time as updateTime,count(cb.cookname) as count from restaurant r LEFT JOIN cook_book cb on r.restaurant_id = cb.restaurant_id LEFT JOIN user_book ub on cb.cook_id = ub.book_id where DATE_FORMAT(ub.update_time,'%Y-%m-%d') = DATE_FORMAT(now(),'%Y-%m-%d') group by cb.cookname,r.name,cb.price,r.telephone_Number,ub.update_time", nativeQuery = true)
     List<Object[]> findCookBookDay();
 
     @Query(value = "select * from user_book where user_id=?1", nativeQuery = true)

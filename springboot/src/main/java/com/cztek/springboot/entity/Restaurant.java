@@ -13,7 +13,7 @@ public class Restaurant {
     private Integer id;//餐厅主键
     private String name;//餐厅名称
     private String telephoneNumber;//餐厅电话
-    
+
     private String workSchdule;
 
     @Column(name = "work_schedule")
